@@ -7,7 +7,7 @@
                 <h2>Laravel 8 CRUD Example from scratch - ItSolutionStuff.com</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('users.create') }}"> Pridėti naują naudotoją</a>
             </div>
         </div>
     </div>
@@ -20,11 +20,11 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th width="280px">Action</th>
+            <th>#</th>
+            <th>Vardas</th>
+            <th>Pavardė</th>
+            <th>El. paštas</th>
+            <th width="280px"></th>
         </tr>
         @foreach ($users as $user)
             <tr>
@@ -35,14 +35,14 @@
                 <td>
                     <form action="{{ route('users.destroy',$user->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Peržiūrėti</a>
 
-                        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Redaguoti</a>
 
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Ištrinti</button>
                     </form>
                 </td>
             </tr>

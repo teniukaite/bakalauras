@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -39,7 +41,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        User::create($request->all());
+        $data = $request->all();
+        $data['password'] = Hash::make(Str::random(20));
+        User::create($data);
 
         return redirect()->route('users.index')
             ->with('success','User created successfully.');

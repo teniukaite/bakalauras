@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(FakerGenerator::class, function () {
             return FakerFactory::create('lt_LT');
         });
+
+        Paginator::useBootstrap();
     }
 }
