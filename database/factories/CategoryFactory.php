@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -16,6 +17,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'parent_id' => $this->faker->boolean(50) ? Category::orderByRaw('RAND()')->first()->id : null
         ];
     }
 }
