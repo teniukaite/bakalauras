@@ -37,7 +37,6 @@ class ConflictController extends Controller
         if ($file = $request->file('file')) {
             $destinationPath = 'files/conflicts/';
             $name = $file->hashName();
-//            Storage::put($destinationPath, $file);
             Storage::disk('local')->put($destinationPath.$name, $file);
             $data['file'] = $name;
         }
