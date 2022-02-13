@@ -29,6 +29,7 @@ class User extends Authenticatable
         'points',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -58,5 +59,20 @@ class User extends Authenticatable
     public function receivedMessages(): HasMany
     {
         return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function submittedConflicts(): HasMany
+    {
+        return $this->hasMany(Conflict::class, 'plaintiff_id');
+    }
+
+    public function receivedConflicts(): HasMany
+    {
+        return $this->hasMany(Conflict::class, 'defendant_id');
+    }
+
+    public function resolvedConflicts(): HasMany
+    {
+        return $this->hasMany(Conflict::class, 'moderator_id');
     }
 }
