@@ -2,8 +2,9 @@
 version: '3'
 services:
     laravel.test:
+        container_name: bakis_php
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: ./docker/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
