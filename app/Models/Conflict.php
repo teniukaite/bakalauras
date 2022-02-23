@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Conflict extends Model
 {
@@ -32,5 +33,10 @@ class Conflict extends Model
     public function moderator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'moderator_id', 'id');
+    }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(File::class, 'conflict_id');
     }
 }

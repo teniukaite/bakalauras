@@ -6,11 +6,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConflictRequest;
 use App\Http\Requests\UpdateConflictRequest;
+use App\Mail\Conflicts\NewConflict;
+use App\Mail\Conflicts\NewConflictUser;
 use App\Models\Conflict;
+use App\Models\ConflictHistory;
+use App\Models\File;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -26,40 +31,50 @@ class ConflictController extends Controller
 
     public function create(): View
     {
-        $users = User::all();
+        $users = collect(User::where('id', '!=', Auth::user()->id)->get());
+
         return view('conflicts.create', compact('users'));
     }
 
-    public function store(StoreConflictRequest $request)
+    public function store(StoreConflictRequest $request): RedirectResponse
     {
         $data = $request->validated();
-
-        if ($file = $request->file('file')) {
-            $destinationPath = 'files/conflicts/';
-            $name = $file->hashName();
-            Storage::disk('local')->put($destinationPath.$name, $file);
-            $data['file'] = $name;
-        }
+        $moderator = User::RandomModerator()->first();
 
         $data['plaintiff_id'] = Auth::user()->id;
         $data['identification'] = 'Nr. ' . Str::random(4);
+        $data['moderator_id'] = $moderator->id;
 
-        Conflict::create($data);
+        $conflict = Conflict::create($data);
+
+        if ($files = $request->file('file')) {
+            foreach ($files as $file) {
+                $destinationPath = 'files/conflicts/';
+                $name = $file->hashName();
+                move_uploaded_file($file->getRealPath(), 'uploads/'.$destinationPath.$name);
+                $fileData['file_path'] = 'uploads/'.$destinationPath.$name;
+                $fileData['name'] = $name;
+                $conflict->files()->create($fileData);
+            }
+        }
+
+
+        Mail::to(Auth::user()->email)->send(new NewConflictUser());
+        Mail::to($moderator->email)->send(new NewConflict());
+        ConflictHistory::create([
+            'details' => 'Skundas buvo sukurtas',
+            'user_id' => Auth::user()->id,
+            'conflict_id' => $conflict->id
+        ]);
 
         return redirect()->route('conflicts.index')
             ->with('success','Skundas pateiktas sekmingai. Apie tolimesne eiga gausite pranesima');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Conflict  $conflict
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Conflict $conflict)
+    public function show(Conflict $conflict): View
     {
-        //
+        //$conflict = $conflict->with('files');
+        return view('conflicts.show', compact('conflict'));
     }
 
     /**

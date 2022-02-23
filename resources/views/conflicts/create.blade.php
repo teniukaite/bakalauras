@@ -72,7 +72,7 @@
                 <label for="file">Failai</label>
             </div>
             <div class="col-md-6">
-                <input type="file" name="file" class="form-control" placeholder="file">
+                <input type="file" name="file[]" class="form-control" placeholder="file" multiple accept=".jpg,.png,.pdf,.jpeg">
             </div>
         </div>
 

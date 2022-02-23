@@ -1,4 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/img/contact-bk.jpg": "/img/contact-bk.jpg",
+    "/img/feature-1.png": "/img/feature-1.png",
+    "/img/feature-2.png": "/img/feature-2.png",
+    "/img/logo.png": "/img/logo.png",
+    "/img/smart-protect-1.jpg": "/img/smart-protect-1.jpg",
+    "/img/smart-protect-2.jpg": "/img/smart-protect-2.jpg",
+    "/img/smart-protect-3.jpg": "/img/smart-protect-3.jpg",
+    "/img/testas.png": "/img/testas.png"
 }

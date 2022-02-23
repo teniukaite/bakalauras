@@ -22,7 +22,6 @@ class CreateConflictsTable extends Migration
             $table->string('identification');
             $table->longText('explanation');
             $table->string('cause');
-            $table->string('file')->nullable();
             $table->string('status')->default('sukurtas');
             $table->string('decision')->nullable();
             $table->foreignIdFor(Conflict::class, 'parent_id')->nullable();

@@ -75,6 +75,16 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="birthday" class="col-md-4 col-form-label text-md-end">Data</label>
+
+                            <div class="col-md-6">
+                            <input type="date" class="form-control" id="birthday" name="birthday"
+                                   value="2022-02-22"
+                                   min="1900-01-01" max="2060-12-31">
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

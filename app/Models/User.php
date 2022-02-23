@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -28,8 +29,10 @@ class User extends Authenticatable
         'photo',
         'points',
         'email',
-        'password',
-        'role'
+        'role',
+        'gender',
+        'birthday',
+        'password'
     ];
 
     /**
@@ -74,5 +77,23 @@ class User extends Authenticatable
     public function resolvedConflicts(): HasMany
     {
         return $this->hasMany(Conflict::class, 'moderator_id');
+    }
+
+    public function orderedOrders(): HasManyThrough
+    {
+        return $this->HasManyThrough(Order::class, User::class, 'id', 'client_id');
+    }
+
+    public function createdOrders(): HasManyThrough
+    {
+        return $this->HasManyThrough(Order::class, User::class, 'id', 'freelancer_id');
+    }
+
+    public function scopeRandomModerator($query, ?int $id = null)
+    {
+        if (!is_null($id)) {
+            return $query->where('role', '=', 2)->where('id', '!=', $id)->inRandomOrder();
+        }
+        return $query->where('role', '=', 2)->inRandomOrder();
     }
 }
