@@ -10,7 +10,7 @@
                 <a class="btn btn-primary" href="{{ route('conflicts.index') }}"> Atgal </a>
             </div>
             <div class="pull-right">
-                <a class="fa-solid fa-clock-rotate-left fa-2x"></a>
+                <a href="{{route('show.history', $conflict->id)}}"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></a>
             </div>
         </div>
     </div>
@@ -19,6 +19,20 @@
             <div class="pull-left">
                 <h3>
                     Statusas: {{ $conflict->status }}
+                    <div class="row mb-3">
+                        <label for="cause" class="col-md-4 col-form-label text-md-end">{{ __('Statusas') }}</label>
+                        <div class="col-md-6">
+                            <select name="cause" id="cause" class="form-control">
+                                <option @if ($conflict->status == 0) selected @endif value="0">Pateiktas </option>
+                                <option @if ($conflict->status == 1) selected @endif value="1">Peržiūrėtas</option>
+                                <option @if ($conflict->status == 2) selected @endif value="2">Laukiama informacijos</option>
+                                <option @if ($conflict->status == 3) selected @endif value="3">Priimamas sprendimas</option>
+                                <option @if ($conflict->status == 4) selected @endif value="4">Išspręstas</option>
+                                <option @if ($conflict->status == 5) selected @endif value="5">Atšauktas</option>
+                                <option @if ($conflict->status == 6) selected @endif value="6">Grąžintas</option>
+                            </select>
+                        </div>
+                    </div>
                 </h3>
 
             </div>
@@ -37,13 +51,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Priezastis:</strong>
-                {{ $conflict->cause }}
+                {{ \App\Http\Service\ConflictsService::getCause( $conflict->cause) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kaltinamasis:</strong>
-                {{ $conflict->defendant->name }} {{$conflict->defendant->lastName}}
+                <strong>Uzsakymas:</strong>
+                {{ $conflict->conflictOrders->service->service_name }} ({{$conflict->conflictOrders->service->freelancer->email}})
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

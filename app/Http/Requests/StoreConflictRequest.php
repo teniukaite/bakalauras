@@ -27,7 +27,7 @@ class StoreConflictRequest extends FormRequest
     {
         return [
             'explanation' => 'required',
-            'defendant_id' => 'required',
+            'order_id' => 'required',
             'cause' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

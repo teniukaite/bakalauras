@@ -69,11 +69,6 @@ class User extends Authenticatable
         return $this->hasMany(Conflict::class, 'plaintiff_id');
     }
 
-    public function receivedConflicts(): HasMany
-    {
-        return $this->hasMany(Conflict::class, 'defendant_id');
-    }
-
     public function resolvedConflicts(): HasMany
     {
         return $this->hasMany(Conflict::class, 'moderator_id');
@@ -95,5 +90,15 @@ class User extends Authenticatable
             return $query->where('role', '=', 2)->where('id', '!=', $id)->inRandomOrder();
         }
         return $query->where('role', '=', 2)->inRandomOrder();
+    }
+
+    public function conflictHistory(): HasMany
+    {
+        return $this->hasMany(ConflictHistory::class, 'user_id');
+    }
+
+    public function fileComments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }

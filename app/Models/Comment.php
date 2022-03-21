@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ConflictHistory extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function conflict(): BelongsTo
+    public function files(): BelongsTo
     {
-        return $this->belongsTo(Conflict::class, 'conflict_id', 'id');
+        return $this->belongsTo(File::class, 'file_id', 'id');
     }
 
     public function user(): BelongsTo

@@ -23,17 +23,17 @@ class ConflictController extends Controller
 {
     public function index(): View
     {
-        $conflicts = Conflict::latest()->paginate(5);
+        $conflicts = Conflict::UsersConflicts()->latest()->paginate(10);
 
         return view('conflicts.index',compact('conflicts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create(): View
     {
-        $users = collect(User::where('id', '!=', Auth::user()->id)->get());
+        $orders = Auth::user()->orderedOrders ?? [];
 
-        return view('conflicts.create', compact('users'));
+        return view('conflicts.create', compact('orders'));
     }
 
     public function store(StoreConflictRequest $request): RedirectResponse
@@ -62,7 +62,7 @@ class ConflictController extends Controller
         Mail::to(Auth::user()->email)->send(new NewConflictUser());
         Mail::to($moderator->email)->send(new NewConflict());
         ConflictHistory::create([
-            'details' => 'Skundas buvo sukurtas',
+            'details' => 'pateikė skundą',
             'user_id' => Auth::user()->id,
             'conflict_id' => $conflict->id
         ]);
@@ -73,7 +73,13 @@ class ConflictController extends Controller
 
     public function show(Conflict $conflict): View
     {
+      //  $conflict = $conflict->with(['orders', 'orders.service'])->where('id', $conflict->id)->first();
         //$conflict = $conflict->with('files');
+        ConflictHistory::create([
+            'details' => 'peržiūrėjo skundą',
+            'user_id' => Auth::user()->id,
+            'conflict_id' => $conflict->id
+        ]);
         return view('conflicts.show', compact('conflict'));
     }
 

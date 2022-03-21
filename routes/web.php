@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConflictController;
+use App\Http\Controllers\ConflictHistoryController;
 use App\Http\Controllers\ModeratorController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\UserController;
@@ -24,10 +26,14 @@ Route::get('/logout', function() {
 });
 
 Route::middleware('checkUser')->group(function () {
-
+    Route::get('/history/{conflict}', [ConflictHistoryController::class, 'show'])->name('show.history');
+    Route::resource('comments', CommentController::class)->except(['create', 'show']);
+    Route::resource('conflicts', ConflictController::class);
+    Route::get('comments/create/{file:id}', [CommentController::class, 'create'])->name('comments.create');
+    Route::get('comments/{file:id}', [CommentController::class, 'show'])->name('comments.show');
 });
 
-Route::middleware('freelancer')->group(function () {
+Route::middleware('freelancer')->prefix('freelancer')->group(function () {
     Route::resource('offers', OffersController::class);
 });
 
@@ -40,5 +46,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
-Route::resource('conflicts', ConflictController::class);
 

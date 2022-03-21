@@ -10,7 +10,7 @@
                 <a class="btn btn-primary" href="{{ route('conflicts.index') }}"> Atgal </a>
             </div>
             <div class="pull-right">
-                <a class="fa-solid fa-clock-rotate-left fa-2x"></a>
+                <a href="{{route('show.history', $conflict->id)}}"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></a>
             </div>
         </div>
     </div>
@@ -18,14 +18,20 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Priezastis:</strong>
-                {{ $conflict->cause }}
+                <strong>Statusas:</strong>
+                {{ \App\Http\Service\ConflictsService::getStatus( $conflict->status) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kaltinamasis:</strong>
-                {{ $conflict->defendant->name }} {{$conflict->defendant->lastName}}
+                <strong>Priezastis:</strong>
+                {{ \App\Http\Service\ConflictsService::getCause( $conflict->cause) }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Uzsakymas:</strong>
+                {{ $conflict->conflictOrders->service->service_name }} ({{$conflict->conflictOrders->service->freelancer->email}})
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -44,7 +50,9 @@
                                 <div class="carousel-inner">
                                     @foreach($conflict->files as $file)
                                         <div class="carousel-item">
-                                            <img  src="{{ asset($file->file_path) }}" class="d-block w-100" alt="file">
+                                          <a href="{{route('comments.show', $file->id)}}">
+                                              <img  src="{{ asset($file->file_path) }}" class="d-block w-100" alt="file">
+                                          </a>
                                         </div>
                                     @endforeach
                                 </div>

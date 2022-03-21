@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConflictHistoryRequest;
 use App\Http\Requests\UpdateConflictHistoryRequest;
+use App\Models\Conflict;
 use App\Models\ConflictHistory;
 
 class ConflictHistoryController extends Controller
@@ -45,9 +46,12 @@ class ConflictHistoryController extends Controller
      * @param  \App\Models\ConflictHistory  $conflictHistory
      * @return \Illuminate\Http\Response
      */
-    public function show(ConflictHistory $conflictHistory)
+    public function show(Conflict $conflict)
     {
-        //
+        $history = $conflict->history()->latest()->paginate(10);
+
+        return view('history.show', compact('history'))->with('i', (request()->input('page', 1) - 1) * 10);
+
     }
 
     /**

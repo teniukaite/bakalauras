@@ -28,7 +28,7 @@ class CheckUser
          * 3-admin
          */
 
-        if (null !== $user && $user->role > 0) {
+        if (null !== $user && $user->role >= 0) {
             return $next($request);
         }
 
