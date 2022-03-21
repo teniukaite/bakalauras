@@ -43,6 +43,10 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
+            'from' => [
+                'address' => 'noreply@katen.lt',
+                'name' => 'LSSS'
+                ],
         ],
 
         'ses' => [

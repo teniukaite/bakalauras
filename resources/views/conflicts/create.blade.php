@@ -42,12 +42,13 @@
         </div>
 
         <div class="row mb-3">
-            <label for="defendant_id" class="col-md-4 col-form-label text-md-end">{{ __('Kaltinamasis') }}</label>
+            <label for="order_id" class="col-md-4 col-form-label text-md-end">{{ __('Uzsakymas') }}</label>
             <div class="col-md-6">
-                <select name="defendant_id" id="defendant_id" class="form-control">
-                    <option value="0">Pasirinkite kaltinajį asmenį: </option>
-                    @foreach($users as $user)
-                        <option value="{{$user->id}}">{{$user->name }} {{ $user->lastName }}</option>
+                <select @if (empty($orders)) disabled @endif name="order_id" id="order_id" class="form-control">
+                    <option value="0">Pasirinkite užsakymą, dėl kurio norite pateikti skundą: </option>
+
+                    @foreach($orders as $order)
+                        <option value="{{$order->id}}">{{$order->service->service_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -72,7 +73,7 @@
                 <label for="file">Failai</label>
             </div>
             <div class="col-md-6">
-                <input type="file" name="file" class="form-control" placeholder="file">
+                <input type="file" name="file[]" class="form-control" placeholder="file" multiple accept=".jpg,.png,.pdf,.jpeg">
             </div>
         </div>
 

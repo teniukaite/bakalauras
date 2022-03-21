@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckUser;
+use App\Http\Middleware\Freelancer;
+use App\Http\Middleware\Moderator;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -74,5 +76,7 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'checkUser' => CheckUser::class,
+        'freelancer' => Freelancer::class,
+        'moderator' => Moderator::class,
     ];
 }

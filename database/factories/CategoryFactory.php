@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'parent_id' => $this->faker->boolean(50) ? Category::orderByRaw('RAND()')->first()->id : null
+            //'parent_id' => $this->faker->boolean(50) ? Category::orderByRaw('RAND()')->first()->id : null
         ];
     }
 }
