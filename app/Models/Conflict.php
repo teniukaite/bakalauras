@@ -50,4 +50,14 @@ class Conflict extends Model
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
+
+    public function tokens(): BelongsTo
+    {
+        return $this->belongsTo(Token::class, 'conflict_id');
+    }
+
+    public function additionalInfo(): HasMany
+    {
+        return $this->hasMany(AdditionalInformation::class, 'conflict_id');
+    }
 }

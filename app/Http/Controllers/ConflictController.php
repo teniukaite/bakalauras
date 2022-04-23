@@ -6,11 +6,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConflictRequest;
 use App\Http\Requests\UpdateConflictRequest;
+use App\Http\Service\ConflictsService;
 use App\Mail\Conflicts\NewConflict;
 use App\Mail\Conflicts\NewConflictUser;
 use App\Models\Conflict;
 use App\Models\ConflictHistory;
 use App\Models\File;
+use App\Models\Token;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -21,6 +23,13 @@ use Illuminate\Support\Str;
 
 class ConflictController extends Controller
 {
+    private ConflictsService $conflictsService;
+
+    public function __construct(ConflictsService $conflictsService)
+    {
+        $this->conflictsService = $conflictsService;
+    }
+
     public function index(): View
     {
         $conflicts = Conflict::UsersConflicts()->latest()->paginate(10);
@@ -116,4 +125,17 @@ class ConflictController extends Controller
     {
         //
     }
+
+    public function getInformationForm(string $token)
+    {
+        $message = $this->conflictsService->checkToken($token);
+        $conflict = $message['conflict'];
+
+        if ($message['message']) {
+            return redirect()->route('conflicts.index')->with('error', $message);
+        }
+
+        return view('conflicts.information', compact('conflict'));
+    }
+
 }

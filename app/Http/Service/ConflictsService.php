@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Service;
 
+use App\Models\Token;
+
 class ConflictsService
 {
     public static function getCause(int $causeId): string
@@ -28,5 +30,37 @@ class ConflictsService
             5 => 'Atšauktas',
             6 => 'Grąžintas',
         };
+    }
+
+    public function checkToken(string $token): array
+    {
+        $message = [];
+        $tokenFromDb = Token::where('token', $token)->first();
+        $message = [
+            'message' => null,
+        ];
+
+        if (!$tokenFromDb) {
+            $message['message'] = 'Jūs neturite teisės pasiekti šio puslapio';
+        }
+
+        if ($tokenFromDb->users->id !== auth()->user()->id) {
+            $message['message'] = 'Jūs neturite teisės pasiekti šio puslapio';
+        }
+
+        if($tokenFromDb->is_expired) {
+            $message['message'] = 'Jūs neturite teisės pasiekti šio puslapio';
+        }
+
+        if (date_diff(now(), $tokenFromDb->created_at)->days > 3){
+            $tokenFromDb->is_expired = true;
+            $tokenFromDb->save();
+            $message['message'] = 'Jūs neturite teisės pasiekti šio puslapio';
+        }
+
+        $conflict = $tokenFromDb->conflicts;
+        $message['conflict'] = $conflict;
+
+        return $message;
     }
 }

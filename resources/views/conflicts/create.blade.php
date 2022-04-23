@@ -46,7 +46,6 @@
             <div class="col-md-6">
                 <select @if (empty($orders)) disabled @endif name="order_id" id="order_id" class="form-control">
                     <option value="0">Pasirinkite užsakymą, dėl kurio norite pateikti skundą: </option>
-
                     @foreach($orders as $order)
                         <option value="{{$order->id}}">{{$order->service->service_name }}</option>
                     @endforeach

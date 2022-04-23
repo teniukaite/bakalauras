@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,7 +15,7 @@ class StoreMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,9 @@ class StoreMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message' => 'required',
+            'receiver_id' => 'required',
+            'subject' => 'required',
         ];
     }
 }

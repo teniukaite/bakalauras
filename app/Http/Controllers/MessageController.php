@@ -1,42 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $messages = Message::where('receiver_id', '=', Auth::user()->id)->latest()->paginate(10);
+
+        return view('messages.index',compact('messages'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('messages.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMessageRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreMessageRequest $request)
+    public function store(StoreMessageRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $data['receiver_id'] = User::where('email', '=', $data['receiver_id'])->first()->id;
+        $data['sender_id'] = Auth::user()->id;
+        Message::create($data);
+
+        return redirect()->route('messages.index')
+            ->with('success','Pranešimas išsiųstas sėkmingai');
+
     }
 
     /**

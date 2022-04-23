@@ -1,21 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -24,5 +17,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function landingPage()
+    {
+        $offers = Offer::with('cities')->get();
+
+        return view('welcome', compact('offers'));
     }
 }

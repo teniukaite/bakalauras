@@ -119,39 +119,42 @@
 <div class="container my-5 py-2" id="price-table">
     <h2 class="text-center font-weight-bold d-block mb-3">Paslaugų pasiūlymai</h2>
     <div class="row">
-        <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
-            <h4 class="my-4">STARTUP</h4>
-            <p class="font-weight-bold">$ <span class="display-2 font-weight-bold">0</span> / MO.</p>
-            <ul class="list-unstyled">
-                <li>Up to 5 Documents</li>
-                <li>Up to 3 Reviews</li>
-                <li>5 team Members</li>
-                <li>Limited Support</li>
-            </ul>
-            <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-ghost">Get Free</a>
-        </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5 rounded" id="price-table__premium">
-            <h4 class="my-4">PREMIUM</h4>
-            <p class="font-weight-bold">$ <span class="display-2 font-weight-bold">10</span> / MO.</p>
-            <ul class="list-unstyled">
-                <li>Up to 15 Documents</li>
-                <li>Up to 10 Reviews</li>
-                <li>25 team Members</li>
-                <li>Limited Support</li>
-            </ul>
-            <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-green">Get Free</a>
-        </div>
-        <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
-            <h4 class="my-4">PROFESSIONAL</h4>
-            <p class="font-weight-bold">$ <span class="display-2 font-weight-bold">30</span> / MO.</p>
-            <ul class="list-unstyled">
-                <li>Unlimited Documents</li>
-                <li>Unlimited Reviews</li>
-                <li>Unlimited Members</li>
-                <li>Unlimited Support</li>
-            </ul>
-            <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-ghost">Get Free</a>
-        </div>
+        @foreach($offers as $offer)
+            <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
+                <h4 class="my-4">{{ $offer->service_name }}</h4>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div id="carouselExampleControls-<?=$offer->id;?>" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($offer->files as $file)
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ asset($file->file_path) }}" alt="file">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-<?=$offer->id;?>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-<?=$offer->id;?>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="font-weight-bold">€ <span class="display-2 font-weight-bold">{{ $offer->price }}</span> {{ $offer->price_content }}</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa-solid fa-map-location-dot"></i> {{ $offer->cities->name }}</li>
+                    <li><i class="fa-solid fa-clock"></i> {{ $offer->duration }}</li>
+                    <li><i class="fa-solid fa-user"></i> {{$offer->freelancer->name}} {{$offer->freelancer->lastName}}</li>
+                    <li>Limited Support</li>
+                </ul>
+                <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-ghost">Get Free</a>
+            </div>
+        @endforeach
     </div>
 </div>
 <!-- contact -->
@@ -195,6 +198,11 @@
 @include('layouts.footer')
 
 <script src="{{asset('js/app.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $('.carousel-inner > .carousel-item:first-child').addClass('active');
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>

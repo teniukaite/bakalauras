@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckUser;
 use App\Http\Middleware\Freelancer;
@@ -78,5 +79,6 @@ class Kernel extends HttpKernel
         'checkUser' => CheckUser::class,
         'freelancer' => Freelancer::class,
         'moderator' => Moderator::class,
+        'admin' => Admin::class
     ];
 }

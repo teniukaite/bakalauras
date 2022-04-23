@@ -22,6 +22,8 @@
     </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <style media="screen">
     *{
         margin: 0;
@@ -38,7 +40,7 @@
         right: 0;
         background: #111;
         height: auto;
-        width: 100vw;
+        width: auto;
 
         padding-top: 40px;
         color: #fff;
@@ -96,7 +98,7 @@
 
     .footer-bottom{
         background: #000;
-        width: 100vw;
+        width: auto;
         padding: 20px;
         padding-bottom: 40px;
         text-align: center;

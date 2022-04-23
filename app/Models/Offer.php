@@ -41,4 +41,9 @@ class Offer extends Model
     {
         return $this->belongsTo(Order::class, 'service_id', 'id');
     }
+
+    public function cities(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city', 'id');
+    }
 }

@@ -11461,3 +11461,7 @@ button {
 .pull-left {
   float: left;
 }
+
+.text-bold {
+  font-weight: bold;
+}

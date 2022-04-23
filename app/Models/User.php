@@ -101,4 +101,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'user_id');
     }
+
+    public function tokens(): HasMany
+    {
+        return $this->hasMany(Token::class, 'user_id');
+    }
 }
