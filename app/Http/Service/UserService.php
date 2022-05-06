@@ -44,4 +44,12 @@ class UserService
     {
         return count(Message::where('sender_id', '=', Auth::user()->id)->get());
     }
+
+    public static function getUserGender(int $genderID): string
+    {
+        return match ($genderID) {
+            0 => 'Vyras',
+            1 => 'Moteris',
+        };
+    }
 }

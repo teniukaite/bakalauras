@@ -46,4 +46,9 @@ class Offer extends Model
     {
         return $this->belongsTo(City::class, 'city', 'id');
     }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'offer_id');
+    }
 }

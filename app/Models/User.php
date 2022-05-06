@@ -106,4 +106,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Token::class, 'user_id');
     }
+
+    public function askedQuestions(): HasMany
+    {
+        return $this->hasMany(Request::class, 'askedBy_id');
+    }
+
+    public function answeredQuestions(): HasMany
+    {
+        return $this->hasMany(Request::class, 'answeredBy_id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'user_id');
+    }
 }

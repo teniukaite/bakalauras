@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PointsRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -12,12 +13,22 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $users = User::latest()->paginate(5);
+        $search = $request->get('search');
+        //dd($search);
+        $users = User::latest()->paginate(10);
+
+        if ($search) {
+            $users = User::where('name', 'like', "%{$search}%")
+                ->orWhere('lastName', 'like', "%{$search}%")
+                ->paginate(10);
+        }
+
 
         return view('users.index',compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -62,5 +73,31 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
             ->with('success','User deleted successfully');
+    }
+
+    public function myAccount(): View
+    {
+        $user = Auth::user();
+        return view('users.myAccount', compact('user'));
+    }
+
+    public function addPoints(PointsRequest $request, User $user): RedirectResponse
+    {
+        $points = $request->validated()['points'];
+        $user->points += $points;
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success','Points added successfully');
+    }
+
+    public function removePoints(PointsRequest $request, User $user): RedirectResponse
+    {
+        $points = $request->validated()['points'];
+        $user->points -= $points;
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('success','Points removed successfully');
     }
 }

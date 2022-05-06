@@ -1,21 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 use App\Models\Review;
+use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $reviews = Review::latest()->paginate(5);
+     //   dd($reviews);
+
+        return view('moderator.reviews.index', compact('reviews'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -39,15 +42,9 @@ class ReviewController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Review $review)
+    public function show(Review $review): View
     {
-        //
+        return view('moderator.reviews.show', compact('review'));
     }
 
     /**
@@ -79,8 +76,11 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Review $review): RedirectResponse
     {
-        //
+        $review->delete();
+
+        return redirect()->route('reviews.index')
+            ->with('success','Atsiliepimas sėkmingai ištrintas');
     }
 }

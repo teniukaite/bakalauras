@@ -12,6 +12,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ModeratorController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\OffersController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +56,11 @@ Route::middleware('moderator')->prefix('moderator')->group(function () {
     Route::get('/conflict/information/{conflict}', [ModeratorController::class, 'openInformationRequest'])->name('moderator.need.conflict.information');
     Route::post('/conflict/information/{conflict}', [ModeratorController::class, 'sendInformationRequest'])->name('moderator.send.conflict.information');
     Route::post('/conflict/{conflict}/close', [ModeratorController::class, 'saveDecision'])->name('moderator.close.conflict');
+    Route::resource('requests', RequestController::class);
+    Route::post('/requests/{request}/answer', [RequestController::class, 'answer'])->name('requests.answer');
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
 });
 
 Route::middleware('admin')->prefix('admin')->group(function () {
@@ -63,5 +70,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/offers', [AdminController::class, 'getOffers'])->name('admin.offers');
     Route::post('/recommend/{offer}', [AdminController::class, 'recommendOffer'])->name('admin.recommend');
     Route::resource('newsletters', NewsletterController::class);
+    Route::patch('/user/{user}/add/points', [UserController::class, 'addPoints'])->name('user.addPoints');
+    Route::patch('/user/{user}/remove/points', [UserController::class, 'removePoints'])->name('user.removePoints');
 });
 

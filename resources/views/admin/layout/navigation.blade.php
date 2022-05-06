@@ -71,7 +71,7 @@
 {{--            </ul>--}}
         </li>
         <li class="">
-            <a href="#" aria-expanded="false">
+            <a href="{{route('requests.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <img src="/img/menu-icon/11.svg" alt="">
                 </div>
@@ -85,7 +85,7 @@
 {{--            </ul>--}}
         </li>
         <li class="">
-            <a href="navs.html" aria-expanded="false">
+            <a href="{{ route('reviews.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <img src="/img/menu-icon/12.svg" alt="">
                 </div>
@@ -109,7 +109,7 @@
 {{--            </ul>--}}
         </li>
         <li class="">
-            <a href="invoice.html" aria-expanded="false">
+            <a href="{{route('dashboard')}}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <img src="/img/menu-icon/7.svg" alt="">
                 </div>

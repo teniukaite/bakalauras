@@ -28,10 +28,6 @@
 
     <link rel="stylesheet" href="{{asset('vendors/scroll/scrollable.css')}}"/>
 
-    <link rel="stylesheet" href="{{asset('vendors/datatable/css/jquery.dataTables.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('vendors/datatable/css/responsive.dataTables.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('vendors/datatable/css/buttons.dataTables.min.css')}}"/>
-
     <link rel="stylesheet" href="{{asset('vendors/text_editor/summernote-bs4.css')}}"/>
 
     <link rel="stylesheet" href="{{asset('vendors/morris/morris.css')}}">
@@ -79,16 +75,6 @@
 
 <script src="{{asset('vendors/owl_carousel/js/owl.carousel.min.js')}}"></script>
 
-<script src="{{asset('vendors/datatable/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/buttons.flash.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/jszip.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/pdfmake.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/vfs_fonts.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('vendors/datatable/js/buttons.print.min.js')}}"></script>
-
 <script src="{{asset('vendors/datepicker/datepicker.js')}}"></script>
 <script src="{{asset('vendors/datepicker/datepicker.en.js')}}"></script>
 <script src="{{asset('vendors/datepicker/datepicker.custom.js')}}"></script>
@@ -106,9 +92,6 @@
 
 <script src="{{asset('vendors/vectormap-home/vectormap-2.0.2.min.js')}}"></script>
 <script src="{{asset('vendors/vectormap-home/vectormap-world-mill-en.js')}}"></script>
-
-<script src="{{asset('vendors/apex_chart/apex-chart2.js')}}"></script>
-<script src="{{asset('vendors/apex_chart/apex_dashboard.js')}}"></script>
 
 <script src="{{asset('vendors/chart_am/core.js')}}"></script>
 <script src="{{asset('vendors/chart_am/charts.js')}}"></script>
