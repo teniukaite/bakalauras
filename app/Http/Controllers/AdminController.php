@@ -5,15 +5,28 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        $loggedInUser = Auth::user();
+        $userCount = User::all()->count();
+        $freelancerCount = User::freelancerCount();
+        $usersCount = User::userCount();
+        $moderatorCount = User::moderatorCount();
+        $adminCount = User::adminCount();
+        $newUsers = User::newUsers();
 
-        return view('admin.dashboard', compact('loggedInUser'));
+        return view('admin.dashboard', compact(
+            'userCount',
+            'freelancerCount',
+            'usersCount',
+            'moderatorCount',
+            'adminCount',
+            'newUsers'
+        ));
     }
 
     public function getOffers()

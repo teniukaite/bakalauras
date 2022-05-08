@@ -28,18 +28,10 @@
                             </button>
                         </a>
                         <ul class="text-left mt-2">
-                            <li class="active"><a href="#"><i class="ti-user"></i> <span> <span>Gautieji</span> <span
+                            <li @if(!str_contains(url()->current(), '/sent')) class="active" @endif><a href="{{route('messages.index')}}"><i class="ti-user"></i> <span> <span>Gautieji</span> <span
                                             class="round_badge">{{\App\Http\Service\UserService::getReceivedMessageCount() }}</span> </span> </a></li>
-{{--                            <li><a href="#"><i class="ti-crown"></i> <span> <span>Promotions</span> <span--}}
-{{--                                            class="round_badge">1</span> </span> </a></li>--}}
-{{--                            <li><a href="#"><i class="ti-star"></i> <span> <span>Started</span> <span--}}
-{{--                                            class="round_badge">2</span> </span> </a></li>--}}
-                            <li><a href="#"><i class="ti-announcement"></i> <span> <span>Išsiųsti laiškai</span> <span
+                            <li @if(str_contains(url()->current(), '/sent')) class="active" @endif ><a href="{{route('messages.sent')}}"><i class="ti-announcement"></i> <span> <span>Išsiųsti laiškai</span> <span
                                                 class="round_badge">{{\App\Http\Service\UserService::getSentMessageCount() }}</span> </span> </a></li>
-{{--                            <li><a href="#"><i class="ti-pin2"></i> <span> <span>Drafts</span> <span--}}
-{{--                                            class="round_badge">3</span> </span> </a></li>--}}
-{{--                            <li><a href="#"><i class="ti-pin"></i> <span> <span>Spam</span> </span> </a></li>--}}
-{{--                            <li><a href="#"><i class="ti-trash"></i> <span> <span>Trash</span> </span> </a></li>--}}
                         </ul>
                     </div>
                 </div>
@@ -79,19 +71,24 @@
                                 </thead>
                                 <tbody>
                                 @foreach($messages as $message)
-                                <tr>
+                                <tr @if(!$message->read) class="bold" @endif>
                                     <th scope="row">
                                         <label class="primary_checkbox d-flex mr-12 ">
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label></th>
-                                    <td><i class="far fa-star"></i></td>
                                     <td>
                                         <div class="media align-items-center">
                                             <img class="circle-rounded mr-3" src="{{asset($message->sender->photo)}}" alt="" width="30"
                                                  height="30">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media align-items-center">
                                             <div class="media-body">
+                                                <a href="{{route('messages.show', $message->id)}}">
                                                 <p>{{$message->sender->name}} {{$message->sender->lastName}}</p>
+                                                </a>
                                             </div>
                                         </div>
                                     </td>
@@ -115,4 +112,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <style>
+        .bold p {
+            font-weight: bold !important;
+            color: #000000 !important;
+        }
+    </style>
 @endsection

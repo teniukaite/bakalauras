@@ -45,7 +45,7 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Message $message): View
     {
         //
     }
@@ -82,5 +82,13 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         //
+    }
+
+    public function showSentMessages(): View
+    {
+        $messages = Message::where('sender_id', '=', Auth::user()->id)->latest()->paginate(10);
+
+        return view('messages.index',compact('messages'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 }

@@ -11954,20 +11954,8 @@ table.lms_table_active3.dataTable thead .sorting_asc::before, table.lms_table_ac
     font-weight: 300
 }
 
-.crm_bg_1 {
-    background: #20deff !important
-}
-
 .crm_bg_2 {
     background: #c388f6 !important
-}
-
-.crm_bg_3 {
-    background: #f5f5ff !important
-}
-
-.crm_bg_3 i {
-    color: #58377e !important
 }
 
 .max-width-220 {
