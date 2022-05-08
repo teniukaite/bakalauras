@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConflictController;
 use App\Http\Controllers\ConflictHistoryController;
+use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ModeratorController;
@@ -79,3 +80,4 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 #offers
 Route::get('/offers', [OffersController::class, 'list'])->name('offers.list');
 Route::resource('offers', OffersController::class)->only('show');
+Route::resource('freelancers', FreelancerController::class)->only('index');
