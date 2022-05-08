@@ -19,6 +19,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('offers.list') }}">Pasiūlymai</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('freelancers.index') }}">Laisvai samdomi darbuotojai</a>
+                </li>
             </ul>
         </div>
     </div>

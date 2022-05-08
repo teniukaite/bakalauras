@@ -47,6 +47,7 @@
                                 @endif
                             @endauth
                                 <a href="{{ route('offers.list') }}" class="text-white lead">Pasiūlymai</a>
+                                <a href="{{ route('freelancers.index') }}" class="text-white lead">Laisvai samdomi darbuotojai</a>
                         </div>
                 </div>
             </div>
