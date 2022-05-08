@@ -92,6 +92,31 @@ class User extends Authenticatable
         return $query->where('role', '=', 2)->inRandomOrder();
     }
 
+    public function scopeUserCount(): int
+    {
+        return User::where('role', '=', 0)->count();
+    }
+
+    public function scopeFreelancerCount(): int
+    {
+        return User::where('role', '=', 1)->count();
+    }
+
+    public function scopeModeratorCount(): int
+    {
+        return User::where('role', '=', 2)->count();
+    }
+
+    public function scopeAdminCount(): int
+    {
+        return User::where('role', '=', 3)->count();
+    }
+
+    public function scopeNewUsers(): int
+    {
+        return User::where('created_at', '>', now()->subDay())->count();
+    }
+
     public function conflictHistory(): HasMany
     {
         return $this->hasMany(ConflictHistory::class, 'user_id');

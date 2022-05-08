@@ -135,7 +135,8 @@
                         <div class="header_notification_warp d-flex align-items-center">
                             <li>
                                 <a class="bell_notification_clicker" href="#"> <img src="/img/icon/msg.svg" alt="">
-                                    <span>{{\App\Http\Service\UserService::getUnreadMessageCount()}}</span>
+                                    <span @if(\App\Http\Service\UserService::getUnreadMessageCount() == 0) style="display: none"@endif >
+                                        {{\App\Http\Service\UserService::getUnreadMessageCount()}}</span>
                                 </a>
                                 <div class="Menu_NOtification_Wrap">
                                     <div class="notification_Header">
@@ -173,7 +174,7 @@
                                 </div>
                                 <div class="profile_info_details">
                                     <a href="{{route('home')}}">Klientų sistema </a>
-                                    <a href="#">Mano profilis</a>
+                                    <a href="{{route('users.myAccount')}}">Mano profilis</a>
                                     <a href="#">Atsijungti </a>
                                 </div>
                             </div>

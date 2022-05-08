@@ -23,6 +23,7 @@ Route::get('/', [HomeController::class, 'landingPage']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/messages/sent', [MessageController::class, 'showSentMessages'])->name('messages.sent');
     Route::resource('messages', MessageController::class);
 });
 
@@ -44,10 +45,11 @@ Route::middleware('checkUser')->group(function () {
     Route::get('comments/{file:id}', [CommentController::class, 'show'])->name('comments.show');
     Route::get('/submit/{token}/information', [ConflictController::class, 'getInformationForm'])->name('conflict.get.information.form');
     Route::post('/submit/{conflict}/information', [AdditionalInformationController::class, 'store'])->name('conflict.post.information.form');
+    Route::get('/my-profile', [UserController::class, 'myAccount'])->name('users.myAccount');
 });
 
 Route::middleware('freelancer')->prefix('freelancer')->group(function () {
-    Route::resource('offers', OffersController::class);
+    Route::resource('offers', OffersController::class)->except('show');
 });
 
 Route::middleware('moderator')->prefix('moderator')->group(function () {
@@ -74,3 +76,6 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::patch('/user/{user}/remove/points', [UserController::class, 'removePoints'])->name('user.removePoints');
 });
 
+#offers
+Route::get('/offers', [OffersController::class, 'list'])->name('offers.list');
+Route::resource('offers', OffersController::class)->only('show');

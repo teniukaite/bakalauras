@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function landingPage()
     {
-        $offers = Offer::with('cities')->get();
+        $offers = Offer::with('cities')->where('recommended', 1)->limit(9)->get();
 
         return view('welcome', compact('offers'));
     }

@@ -36,7 +36,6 @@
                     <img src="../img/logo.png" alt="logo">
                 </div>
                 <div class="col-6 align-self-center text-right">
-                    @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth
                                 <a href="{{ url('/home') }}" class="text-white lead">Home</a>
@@ -47,8 +46,8 @@
                                     <a href="{{ route('register') }}" class="text-white lead">Registruotis</a>
                                 @endif
                             @endauth
+                                <a href="{{ route('offers.list') }}" class="text-white lead">Pasiūlymai</a>
                         </div>
-                    @endif
                 </div>
             </div>
         </header>
@@ -82,7 +81,7 @@
 </div>
 <!-- feature (skew background) -->
 <div class="jumbotron jumbotron-fluid feature" id="feature-first">
-    <div class="container my-5">
+    <div class="container">
         <div class="row justify-content-between text-center text-md-left">
             <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6">
                 <h2 class="font-weight-bold">Prisijunkite prie bendruomenės</h2>
@@ -159,7 +158,7 @@
 </div>
 <!-- contact -->
 <div class="jumbotron jumbotron-fluid" id="contact" style="background-image: url(../img/contact-bk.jpg);">
-    <div class="container my-5">
+    <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-6 text-white">
                 <h2 class="font-weight-bold">Contact Us</h2>

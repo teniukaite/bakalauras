@@ -36,16 +36,13 @@
                                     <div class="box_right d-flex lms_block">
                                         <div class="serach_field_2">
                                             <div class="search_inner">
-                                                <form Active="#">
+                                                <form action="{{ route('users.index') }}" method="GET">
                                                     <div class="search_field">
-                                                        <input id="search" type="text" placeholder="Įveskite paieškos frazę...">
+                                                        <input id="search" name="search" type="text" placeholder="Įveskite paieškos frazę...">
                                                     </div>
                                                     <button type="submit"><i class="ti-search"></i></button>
                                                 </form>
                                             </div>
-                                        </div>
-                                        <div class="add_button ml-10">
-                                            <a onclick="window.location.href = '/admin/users?search=' + search" data-toggle="modal" data-target="#addcategory" class="btn_1">Ieškoti</a>
                                         </div>
                                     </div>
                                 </div>
