@@ -23,7 +23,7 @@ class CreateConflictsTable extends Migration
             $table->string('identification');
             $table->longText('explanation');
             $table->string('cause');
-            $table->int('status')->default(0);
+            $table->integer('status')->default(0);
             $table->string('decision')->nullable();
             $table->foreignIdFor(Conflict::class, 'parent_id')->nullable();
             $table->foreignIdFor(User::class, 'plaintiff_id');

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
     {
          \App\Models\User::factory(1000)->create();
          \App\Models\Category::factory(100)->create();
+
+         $this->call(OfferSeeder::class);
+         $this->call(ImageSeeder::class);
     }
 }

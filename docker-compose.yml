@@ -19,13 +19,12 @@ services:
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
         volumes:
-            - '.:/var/www/html'
+            - '.:/home/www/html'
         networks:
             - sail
         depends_on:
             - mariadb
             - redis
-            - meilisearch
     mariadb:
         image: 'mariadb:10'
         ports:
@@ -44,6 +43,19 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        networks:
+            - sail
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=mariadb
+            - PMA_PORT=${FORWARD_DB_PORT:-3306}
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASS=${DB_PASSWORD}
     redis:
         image: 'redis:alpine'
         ports:
@@ -54,19 +66,6 @@ services:
             - sail
         healthcheck:
             test: ["CMD", "redis-cli", "ping"]
-            retries: 3
-            timeout: 5s
-    meilisearch:
-        image: 'getmeili/meilisearch:latest'
-        platform: linux/x86_64
-        ports:
-            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
-        volumes:
-            - 'sailmeilisearch:/data.ms'
-        networks:
-            - sail
-        healthcheck:
-            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
             retries: 3
             timeout: 5s
     mailhog:

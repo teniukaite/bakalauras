@@ -49,7 +49,7 @@ Route::middleware('checkUser')->group(function () {
 });
 
 Route::middleware('freelancer')->prefix('freelancer')->group(function () {
-    Route::resource('offers', OffersController::class);
+    Route::resource('offers', OffersController::class)->except('show');
 });
 
 Route::middleware('moderator')->prefix('moderator')->group(function () {
@@ -76,3 +76,6 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::patch('/user/{user}/remove/points', [UserController::class, 'removePoints'])->name('user.removePoints');
 });
 
+#offers
+Route::get('/offers', [OffersController::class, 'list'])->name('offers.list');
+Route::resource('offers', OffersController::class)->only('show');
