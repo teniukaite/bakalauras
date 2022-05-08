@@ -5,17 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $user = auth()->user();
+
+        $services = [];
+
+        if ($user->type == 1) {
+            $services = $user->createdOrders()->with('service')->get();
+        }
+
+        $orders = $user->orderedOrders()->with('service')->get();
+
+        return view('orders.index', compact('orders', 'services'));
     }
 
     /**
@@ -73,14 +81,12 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
+    public function destroy(Order $order): Response
     {
-        //
+        if ($order->client_id == auth()->user()->id || $order->freelancer_id == auth()->user()->id) {
+            $order->delete();
+        }
+
+        return new JsonResponse(['message' => 'Ištrinta']);
     }
 }

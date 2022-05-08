@@ -13,6 +13,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ModeratorController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\OffersController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/messages/sent', [MessageController::class, 'showSentMessages'])->name('messages.sent');
     Route::resource('messages', MessageController::class);
+    Route::resource('orders', OrderController::class);
 });
 
 Auth::routes();
