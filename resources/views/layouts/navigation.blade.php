@@ -22,6 +22,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('freelancers.index') }}">Laisvai samdomi darbuotojai</a>
                 </li>
+                @auth()
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('orders.index') }}">Mano užsakymai</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
