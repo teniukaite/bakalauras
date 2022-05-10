@@ -63,13 +63,14 @@
                                         </thead>
                                         <tbody>
                                         @foreach ($offers as $offer)
-                                            <tr>
+                                            <tr @if($offer->recommened) class="bold" @endif >
                                                 <th scope="row"><a href="#" class="question_content"> {{ ++$i }} </a></th>
                                                 <td>{{ $offer->service_name }}</td>
                                                 <td>{{ $offer->freelancer->name }} {{ $offer->freelancer->lastName }}</td>
                                                 <td>{{ $offer->cities->name }}</td>
                                                 <td>{{ $offer->category->name }}</td>
                                                 <td>
+                                                    @if($offer->recommended == 0)
                                                     <form action="{{route('admin.recommend', $offer->id)}}" method="post">
                                                         @csrf
                                                     <div class="col-lg-12 margin-tb">
@@ -78,6 +79,16 @@
                                                         </div>
                                                     </div>
                                                     </form>
+                                                    @else
+                                                        <form action="{{route('admin.unrecommend', $offer->id)}}" method="post">
+                                                            @csrf
+                                                            <div class="col-lg-12 margin-tb">
+                                                                <div class="pull-right">
+                                                                    <button type="submit" class="btn_3"> Pašalinti iš rekomenduojamų </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -92,4 +103,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <style>
+        .bold p {
+            font-weight: bold !important;
+            color: #0a58ca !important;
+        }
+    </style>
 @endsection

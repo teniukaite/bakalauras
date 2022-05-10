@@ -43,4 +43,12 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Pasiūlymas pažymėtas rekomenduotu.');
     }
+
+    public function unrecommendOffer(Offer $offer)
+    {
+        $offer->recommended = false;
+        $offer->save();
+
+        return redirect()->back()->with('success', 'Pasiūlymas pašalintas iš rekomenduojamų.');
+    }
 }

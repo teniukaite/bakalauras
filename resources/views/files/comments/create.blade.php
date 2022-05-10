@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Pakomentuoti faila</h2>
+                <h2>Pakomentuoti failą</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-outline-primary" href="{{ url()->previous() }}"> Atgal</a>
