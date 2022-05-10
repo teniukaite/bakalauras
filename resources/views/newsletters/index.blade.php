@@ -72,19 +72,20 @@
                                             <tr>
                                                 <th scope="row"><a href="#" class="question_content"> {{ ++$i }} </a></th>
                                                 <td>{{ $newsletter->name }}</td>
-                                                <td>{{ $newsletter->lastName }}</td>
                                                 <td>{{ substr($newsletter->created_at, 0, 10) }}</td>
                                                 <td>
                                                     <div class="action_btns d-flex">
-                                                        <a href="{{ route('users.edit',$newsletter->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>
+                                                        <a href="{{ route('newsletters.edit',$newsletter->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>
                                                         </a>
-                                                        <form action="{{ route('users.destroy',$newsletter->id) }}" method="POST">
+                                                        <form action="{{ route('newsletters.destroy',$newsletter->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
 
                                                             <button type="submit" class="action_btn"> <i class="fas fa-trash"></i></button>
                                                         </form>
-                                                        <a href="{{route('users.show', $newsletter->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
+                                                        <a href="{{route('newsletters.show', $newsletter->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
+                                                        <a href="{{ route('newsletters.generatePDF', $newsletter->id) }}" class="action_btn"> <i class="fas fa-solid fa-file-pdf"></i> </a>
+                                                        <a href="{{ route('newsletters.sendPDF', $newsletter->id) }}" class="action_btn"> <i class="fas fa-solid fa-paper-plane"></i> </a>
                                                     </div>
                                                 </td>
                                             </tr>

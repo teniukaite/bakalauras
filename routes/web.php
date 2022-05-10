@@ -75,6 +75,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/offers', [AdminController::class, 'getOffers'])->name('admin.offers');
     Route::post('/recommend/{offer}', [AdminController::class, 'recommendOffer'])->name('admin.recommend');
     Route::post('/unrecommend/{offer}', [AdminController::class, 'unrecommendOffer'])->name('admin.unrecommend');
+    Route::get('/newsletters/sendPDF/{newsletter:id}', [NewsletterController::class, 'sendPDF'])->name('newsletters.sendPDF');
+    Route::get('/newsletters/generatePDF/{newsletter:id}', [NewsletterController::class, 'generatePDF'])->name('newsletters.generatePDF');
     Route::resource('newsletters', NewsletterController::class);
     Route::patch('/user/{user}/add/points', [UserController::class, 'addPoints'])->name('user.addPoints');
     Route::patch('/user/{user}/remove/points', [UserController::class, 'removePoints'])->name('user.removePoints');
