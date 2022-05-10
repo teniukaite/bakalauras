@@ -10,19 +10,18 @@ use PhpAmqpLib\Message\AMQPMessage;
 class RabbitSender
 {
     private RabbitService $rabbit;
-    private AMQPChannel $channel;
 
     public function __construct(RabbitService $rabbit)
     {
         $this->rabbit = $rabbit;
     }
 
-    public function send(Message $message): void
+    public function send(object $message): void
     {
-        $this->channel = $this->rabbit->channel();
+        $channel = $this->rabbit->channel();
         $msg = new AMQPMessage(serialize($message));
-        $this->channel->basic_publish($msg, '', 'queue');
-        $this->channel->close();
+        $channel->basic_publish($msg, '', 'queue');
+        $channel->close();
     }
 
     public function close(): void

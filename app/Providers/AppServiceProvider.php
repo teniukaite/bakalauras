@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use App\Http\Service\RabbitMQ\RabbitService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Faker\Generator as FakerGenerator;
@@ -29,6 +31,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(FakerGenerator::class, function () {
             return FakerFactory::create('lt_LT');
         });
+
+        $this->app->singleton(RabbitService::class, function () {
+            $connection = new AMQPStreamConnection(getenv('RABBIT_HOST'), getenv('RABBIT_PORT'), getenv('RABBIT_USER'), getenv('RABBIT_PASSWORD'));
+
+            return new RabbitService($connection);
+        });
+
 
         Paginator::useBootstrap();
     }

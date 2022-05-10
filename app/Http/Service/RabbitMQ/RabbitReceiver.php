@@ -13,13 +13,11 @@ class RabbitReceiver
 {
     private RabbitService $rabbit;
     private AMQPChannel $channel;
-    private MessageService $messageService;
     private array $messages;
 
-    public function __construct(RabbitService $rabbit, MessageService $messageService)
+    public function __construct(RabbitService $rabbit)
     {
         $this->rabbit = $rabbit;
-        $this->messageService = $messageService;
         $this->channel = $this->rabbit->channel();
         $this->messages = [];
     }
@@ -44,6 +42,10 @@ class RabbitReceiver
 
     public function processMessage(AMQPMessage $message): void
     {
-        $this->messages[] = $this->messageService->send($message);
+        $message = unserialize($message->getBody());
+
+        $message->send();
+
+        $this->messages[] = $message;
     }
 }
