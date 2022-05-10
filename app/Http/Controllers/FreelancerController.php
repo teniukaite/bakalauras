@@ -9,7 +9,7 @@ class FreelancerController extends Controller
 {
     public function index(): View
     {
-        $freelancers = User::where('type', 1)->orderBy('points', 'desc')->paginate(10);
+        $freelancers = User::where('role', 1)->orderBy('points', 'desc')->paginate(10);
 
         return view('freelancer.top', compact('freelancers'));
     }

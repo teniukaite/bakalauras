@@ -10,7 +10,7 @@
         <li class="">
             <a href="{{route('users.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/5.svg" alt="">
+                    <i class="fa-solid fa-users"></i>
                 </div>
                 <div class="nav_title">
                     <span>Naudotojai </span>
@@ -25,69 +25,48 @@
         <li class="">
             <a href="{{route('categories.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/2.svg" alt="">
+                    <i class="fa-solid fa-list"></i>
                 </div>
                 <div class="nav_title">
                     <span>Kategorijos </span>
                 </div>
             </a>
-{{--            <ul>--}}
-{{--                <li><a href="editor.html">editor</a></li>--}}
-{{--                <li><a href="mail_box.html">Mail Box</a></li>--}}
-{{--                <li><a href="chat.html">Chat</a></li>--}}
-{{--                <li><a href="faq.html">FAQ</a></li>--}}
-{{--            </ul>--}}
         </li>
         <li class="">
             <a href="{{route('newsletters.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/3.svg" alt="">
+                    <i class="fa-solid fa-file-pdf"></i>
                 </div>
                 <div class="nav_title">
                     <span>Naujienlaiškiai</span>
                 </div>
             </a>
-{{--            <ul>--}}
-{{--                <li><a href="login.html">Login</a></li>--}}
-{{--                <li><a href="resister.html">Register</a></li>--}}
-{{--                <li><a href="error_400.html">Error 404</a></li>--}}
-{{--                <li><a href="error_500.html">Error 500</a></li>--}}
-{{--                <li><a href="forgot_pass.html">Forgot Password</a></li>--}}
-{{--                <li><a href="gallery.html">Gallery</a></li>--}}
-{{--            </ul>--}}
         </li>
         <li class="">
             <a href="{{route('moderator.conflicts')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/4.svg" alt="">
+                    <i class="fa-solid fa-people-arrows-left-right"></i>
                 </div>
                 <div class="nav_title">
                     <span>Konfliktai</span>
                 </div>
             </a>
-{{--            <ul>--}}
-{{--                <li><a href="admin_list.html">Admin List</a></li>--}}
-{{--                <li><a href="add_new_admin.html">Add New Admin</a></li>--}}
-{{--            </ul>--}}
         </li>
         <li class="">
             <a href="{{route('requests.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/11.svg" alt="">
+                    <i class="fa-solid fa-question"></i>
                 </div>
                 <div class="nav_title">
                     <span>Užklausos</span>
                 </div>
             </a>
-{{--            <ul>--}}
-{{--                <li><a href="module_setting.html">Module Setting</a></li>--}}
-{{--                <li><a href="role_permissions.html">Role & Permissions</a></li>--}}
-{{--            </ul>--}}
+
         </li>
         <li class="">
             <a href="{{ route('reviews.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/12.svg" alt="">
+                    <i class="fa-solid fa-bullhorn"></i>
                 </div>
                 <div class="nav_title">
                     <span>Atsiliepimai</span>
@@ -97,24 +76,20 @@
         <li class="">
             <a href="{{ route('admin.offers') }}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/5.svg" alt="">
+                    <i class="fa-solid fa-briefcase"></i>
                 </div>
                 <div class="nav_title">
                     <span>Skelbimai</span>
                 </div>
             </a>
-{{--            <ul>--}}
-{{--                <li><a href="user_list.html">Users List</a></li>--}}
-{{--                <li><a href="add_new_user.html">Add New User</a></li>--}}
-{{--            </ul>--}}
         </li>
         <li class="">
             <a href="{{route('dashboard')}}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <img src="/img/menu-icon/7.svg" alt="">
+                    <i class="fa-solid fa-chart-column"></i>
                 </div>
                 <div class="nav_title">
-                    <span>Ataskaitos</span>
+                    <span>Statistika</span>
                 </div>
             </a>
         </li>

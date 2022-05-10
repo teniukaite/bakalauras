@@ -19,7 +19,7 @@
                         </div>
                         <div class="page_title_right">
                             <div class="page_date_button d-flex align-items-center">
-                                <img src="{{asset('/img/icon/calender_icon.svg')}}" alt="">
+                                <i class="fa-solid fa-calendar-days fa-2x margin"></i>
                                 {{date('Y-m-d')}}
                             </div>
                         </div>
@@ -99,4 +99,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <style>
+        .margin {
+            margin-right: 20px;
+        }
+    </style>
 @endsection

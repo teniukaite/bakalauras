@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="{{asset('vendors/gijgo/gijgo.min.css')}}"/>
 
-    <link rel="stylesheet" href="{{asset('vendors/font_awesome/css/all.min.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('vendors/tagsinput/tagsinput.css')}}"/>
 
     <link rel="stylesheet" href="{{asset('vendors/datepicker/date-picker.css')}}"/>
@@ -65,22 +65,6 @@
 
 <script src="{{asset('js/metisMenu.js')}}"></script>
 
-<script src="{{asset('vendors/count_up/jquery.waypoints.min.js')}}"></script>
-
-<script src="{{asset('vendors/chartlist/Chart.min.js')}}"></script>
-
-<script src="{{asset('vendors/count_up/jquery.counterup.min.js')}}"></script>
-
-<script src="{{asset('vendors/niceselect/js/jquery.nice-select.min.js')}}"></script>
-
-<script src="{{asset('vendors/owl_carousel/js/owl.carousel.min.js')}}"></script>
-
-<script src="{{asset('vendors/datepicker/datepicker.js')}}"></script>
-<script src="{{asset('vendors/datepicker/datepicker.en.js')}}"></script>
-<script src="{{asset('vendors/datepicker/datepicker.custom.js')}}"></script>
-<script src="{{asset('js/chart.min.js')}}"></script>
-<script src="{{asset('vendors/chartjs/roundedBar.min.js')}}"></script>
-
 <script src="{{asset('vendors/progressbar/jquery.barfiller.js')}}"></script>
 
 <script src="{{asset('vendors/tagsinput/tagsinput.js')}}"></script>
@@ -90,17 +74,8 @@
 <script src="{{asset('vendors/scroll/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('vendors/scroll/scrollable-custom.js')}}"></script>
 
-<script src="{{asset('vendors/vectormap-home/vectormap-2.0.2.min.js')}}"></script>
-<script src="{{asset('vendors/vectormap-home/vectormap-world-mill-en.js')}}"></script>
-
-<script src="{{asset('vendors/chart_am/core.js')}}"></script>
-<script src="{{asset('vendors/chart_am/charts.js')}}"></script>
-<script src="{{asset('vendors/chart_am/animated.js')}}"></script>
-<script src="{{asset('vendors/chart_am/kelly.js')}}"></script>
-<script src="{{asset('vendors/chart_am/chart-custom.js')}}"></script>
-
-<script src="{{asset('js/dashboard_init.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 @yield('js')
 </body>
 
