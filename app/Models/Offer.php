@@ -22,7 +22,7 @@ class Offer extends Model
         return $this->belongsTo(User::class, 'freelancer_id', 'id');
     }
 
-    public function category(): BelongsTo
+    public function categories(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
