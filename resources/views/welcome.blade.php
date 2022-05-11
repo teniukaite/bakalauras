@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>LSSS</title>
+        <link rel="icon" href="/img/logo.png" type="image/png">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -53,32 +54,32 @@
             </div>
         </header>
 
-        <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="lead text-white my-4">
-            Lorem ipsum dolor sit amet, id nec enim autem oblique, ei dico mentitum duo.
-            <br> Illum iusto laoreet his te. Lorem partiendo mel ex. Ad vitae admodum voluptatum per.
+        <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="lead text-white my-4 display">
+            Laisvai samdomų specialistų sistema
+            <br> Tik pas mus galite rasti laisvai samdomų specialistų siūlomas paslaugas, o jei norite tapti specialistu, galite užsiregistruoti
         </p>
     </div>
 </div>
 <!-- three-blcok -->
 <div class="container my-5 py-2">
-    <h2 class="text-center font-weight-bold my-5">Mūsų teikiamos paslaugos</h2>
-{{--    <div class="row">--}}
-{{--        <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">--}}
-{{--            <img src="../img/smart-protect-1.jpg" alt="Anti-spam" class="mx-auto">--}}
-{{--            <h4>Anti-spam</h4>--}}
-{{--            <p>Lorem ipsum dolor sit amet porro his no his deleniti</p>--}}
-{{--        </div>--}}
-{{--        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">--}}
-{{--            <img src="../img/smart-protect-2.jpg" alt="Phishing Detect" class="mx-auto">--}}
-{{--            <h4>Phishing Detect</h4>--}}
-{{--            <p>Ne error antiopam usu. Sed vocen concludaturque ea</p>--}}
-{{--        </div>--}}
-{{--        <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">--}}
-{{--            <img src="../img/smart-protect-3.jpg" alt="Smart Scan" class="mx-auto">--}}
-{{--            <h4>Smart Scan</h4>--}}
-{{--            <p>Et usu ocurreret elaboraret doctus prodesse assueverit.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <h2 class="text-center font-weight-bold my-5">Mes Jums suteikiame</h2>
+    <div class="row center">
+        <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center size-img">
+            <img src="{{asset('/img/logo/search.png')}}" alt="Anti-spam" class="mx-auto bottom">
+            <h4>Paslaugų paieška</h4>
+            <p>Platus paslaugų pasirinkimas! Nuo žemės ūkio iki grožio paslaugų</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center size-img">
+            <img src="{{asset('/img/logo/money.png')}}" alt="Phishing Detect" class="mx-auto bottom">
+            <h4>Pilnas atlygis</h4>
+            <p>Gaukite pilną atlygį už atliktą darbą!</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center size-img">
+            <img src="{{asset('/img/logo/time.png')}}" alt="Smart Scan" class="mx-auto bottom">
+            <h4>Jūsų pasirinktos darbo valandos</h4>
+            <p>Galite dirbti Jums patogiu grafiku ir nereikia niekam už tai atsiskaityti!</p>
+        </div>
+    </div>
 </div>
 <!-- feature (skew background) -->
 <div class="jumbotron jumbotron-fluid feature" id="feature-first">
@@ -86,12 +87,11 @@
         <div class="row justify-content-between text-center text-md-left">
             <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6">
                 <h2 class="font-weight-bold">Prisijunkite prie bendruomenės</h2>
-                <p class="my-4">Te iisque labitur eos, nec sale argumentum scribentur no,
-                    <br> augue disputando in vim. Erat fugit sit at, ius lorem deserunt deterruisset no.</p>
+                <p class="my-4">Dar nesate mūsų bendruomenės dalis? Nieko nelaukdami prisijunkite prie mūsų ir tapkite bendruomenės dalimi!</p>
                 <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue">Registruotis</a>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" class="col-md-6 align-self-center">
-                <img src="../img/feature-1.png" alt="Take a look inside" class="mx-auto d-block">
+                <img src="{{asset('/img/happy.png')}}" class="mx-auto d-block">
             </div>
         </div>
     </div>
@@ -157,45 +157,25 @@
         @endforeach
     </div>
 </div>
-<!-- contact -->
-<div class="jumbotron jumbotron-fluid" id="contact" style="background-image: url(../img/contact-bk.jpg);">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-6 text-white">
-                <h2 class="font-weight-bold">Contact Us</h2>
-                <p class="my-4">
-                    Te iisque labitur eos, nec sale argumentum scribentur,
-                    <br> augue disputando in vim. Erat fugit sit at, ius lorem.
-                </p>
-                <ul class="list-unstyled">
-                    <li>Email : company_email@com</li>
-                    <li>Phone : 361-688-5824</li>
-                    <li>Address : 4826 White Avenue, Corpus Christi, Texas</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <form>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="name">Your Name</label>
-                            <input type="name" class="form-control" id="name">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="Email">Your Email</label>
-                            <input type="email" class="form-control" id="Email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea class="form-control" id="message" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide cta-green my-3">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 @include('layouts.footer')
+<style>
+    .size-img {
+        max-width: 300px;
+        margin-right: 90px;
+    }
+
+    .center{
+        margin-left: 50px;
+    }
+
+    .bottom {
+        margin-bottom: 50px;
+    }
+
+    .display {
+        display: contents;
+    }
+    </style>
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

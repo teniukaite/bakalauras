@@ -88,7 +88,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')
-            ->with('success','Points added successfully');
+            ->with('success','Taškai pridėti sėkmingai');
     }
 
     public function removePoints(PointsRequest $request, User $user): RedirectResponse
@@ -98,6 +98,6 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')
-            ->with('success','Points removed successfully');
+            ->with('success','Taškai pašalinti sėkmingai');
     }
 }
