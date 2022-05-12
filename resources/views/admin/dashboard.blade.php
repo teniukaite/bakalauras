@@ -86,6 +86,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="usersContainer" style="height: 300px; width: 100%;margin-bottom: 70px;"></div>
+                            <div id="categoriesContainer" style="height: 300px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -105,4 +107,80 @@
             color: #FFFFFF;
         }
     </style>
+@endsection
+
+@section('js')
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+
+        async function showUsers() {
+            let data = {};
+            await $.ajax({
+                url: '/api/users',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    data = response.usersCount.map((element) => {
+                        return {
+                            label: element.name,
+                            y: element.users_count
+                        }
+                    });
+                }
+            })
+
+            const chart = new CanvasJS.Chart("usersContainer", {
+                title:{
+                    text: "Naudotojų pasiskirstymas pagal miestus"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "column",
+                        dataPoints: data,
+                    }
+                ]
+            });
+            chart.render();
+        }
+
+        async function showCategories() {
+            let data = {};
+            await $.ajax({
+                url: '/api/categories',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    data = response.ordersCount.map((element) => {
+                        return {
+                            indexLabel: element.name + " (" + element.orders_count + ")",
+                            y: element.orders_count
+                        }
+                    });
+                }
+            })
+
+            console.log(data);
+
+            const chart = new CanvasJS.Chart("categoriesContainer", {
+                title:{
+                    text: "Užsakymų pasiskirstymas pagal kategorijas"
+                },
+                data: [
+                    {
+                        type: "pie",
+                        dataPoints: data,
+                    }
+                ]
+            });
+
+            chart.render();
+        }
+
+        window.onload = async function () {
+            await showUsers();
+            await showCategories();
+        }
+
+    </script>
 @endsection

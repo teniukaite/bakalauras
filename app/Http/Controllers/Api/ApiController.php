@@ -13,34 +13,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ApiController
 {
-    public function getUsersCountInCity(Request $request): JsonResponse
+    public function getUsersCountInCity(): JsonResponse
     {
-        $cities = City::with('users')->get();
-        $response = [];
-
-        foreach ($cities as $city) {
-            $response[$city->name] = $city->users()->count();
-        }
-
         return new JsonResponse([
-            'usersCount' => $response,
+            'usersCount' => City::withCount('users')->orderBy('users_count', 'desc')->limit(10)->get()
         ]);
     }
 
-    public function getOrdersCountInEachCategory(Request $request): JsonResponse
+    public function getOrdersCountInEachCategory(): JsonResponse
     {
-        $categories = Category::with('offers.orders')->get();
-        $response = [];
-
-        foreach ($categories as $category) {
-            $offers = $category->offers;
-            foreach ($offers as $offer) {
-                $response[$category->name]= $offer->orders()->count();
-            }
-        }
-
         return new JsonResponse([
-            'ordersCount' => $response,
+            'ordersCount' => Category::withCount('orders')->orderBy('orders_count')->limit(10)->get()
         ]);
     }
 }
