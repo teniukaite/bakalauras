@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(): Response
     {
-        return view('home');
+        return redirect('/offers');
     }
 
-    public function landingPage()
+    public function landingPage(): View
     {
         $offers = Offer::with('cities')->where('recommended', 1)->limit(9)->get();
 

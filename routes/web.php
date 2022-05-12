@@ -18,6 +18,7 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserRequestsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/messages/sent', [MessageController::class, 'showSentMessages'])->name('messages.sent');
     Route::resource('messages', MessageController::class);
     Route::resource('orders', OrderController::class);
+    #Requests
+    Route::resource('/user_requests', UserRequestsController::class);
 });
 
 Auth::routes();
