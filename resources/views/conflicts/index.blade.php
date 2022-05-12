@@ -27,17 +27,17 @@
                 <td>{{ $conflict->status }}</td>
                 <td>{{ $conflict->created_at }}</td>
                 <td>
-                    <form action="{{ route('conflicts.destroy',$conflict->id) }}" method="POST">
+{{--                    <form action="{{ route('conflicts.destroy',$conflict->id) }}" method="POST">--}}
 
                         <a class="btn btn-info" href="{{ route('conflicts.show',$conflict->id) }}">Peržiūrėti</a>
 
-                        <a class="btn btn-primary" href="{{ route('conflicts.edit',$conflict->id) }}">Redaguoti</a>
+{{--                        <a class="btn btn-primary" href="{{ route('conflicts.edit',$conflict->id) }}">Redaguoti</a>--}}
 
-                        @csrf
-                        @method('DELETE')
+{{--                        @csrf--}}
+{{--                        @method('DELETE')--}}
 
-                        <button type="submit" class="btn btn-danger">Ištrinti</button>
-                    </form>
+{{--                        <button type="submit" class="btn btn-danger">Ištrinti</button>--}}
+{{--                    </form>--}}
                 </td>
             </tr>
         @endforeach
