@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
-        $category->update($request->all());
+        $category->update($request->validated());
 
         return redirect()->route('categories.index')
             ->with('success','Kategorija sėkmingai redaguota');
@@ -59,6 +59,11 @@ class CategoryController extends Controller
 
     public function destroy(Category $category): RedirectResponse
     {
+        if ($category->offers()->count() > 0) {
+            return redirect()->route('categories.index')
+                ->with('error','Kategorijos ištrinti negalima, nes jai priklauso pasiūlymai');
+        }
+
         $category->delete();
 
         return redirect()->route('categories.index')

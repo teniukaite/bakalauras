@@ -6,6 +6,11 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    @if ($message = Session::get('danger'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="main_content_iner overly_inner ">
         <div class="container-fluid p-0 ">
             <div class="row">

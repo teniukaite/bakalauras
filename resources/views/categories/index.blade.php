@@ -1,11 +1,21 @@
 @extends('theme')
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="modal fade" id="categoryCreate" tabindex="-1" aria-labelledby="categoryCreateLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Prideti kategorija</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Pridėti kategoriją</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -25,7 +35,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Pavadinimas') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -38,7 +48,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Išsaugoti</button>
                         </div>
 
                     </form>
@@ -113,8 +123,7 @@
                                                 <td>{{ $category->name }}</td>
                                                 <td>
                                                     <div class="action_btns d-flex">
-                                                        <a href="{{ route('categories.edit',$category->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>
-                                                        </a>
+                                                        <a href="{{ route('categories.edit',$category->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i></a>
                                                         <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -150,5 +159,15 @@
     myModal.addEventListener('shown.bs.modal', function () {
         myInput.value = '';
     })
+
+    let editModal = document.getElementById('categoryEdit')
+
+    function open(category) {
+        editModal.addEventListener('shown.bs.modal', function () {
+            let myInput = document.getElementById('name')
+            myInput.value = category.name;
+        })
+        editModal.style.display = 'block'
+    }
 </script>
 @endsection

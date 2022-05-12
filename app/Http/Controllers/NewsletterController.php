@@ -44,49 +44,25 @@ class NewsletterController extends Controller
             ->with('success','Naujienlaiškis sėkmingai sukurtas');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Newsletter  $newsletter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Newsletter $newsletter)
+    public function edit(Newsletter $newsletter): View
     {
-        //
+        return view('newsletters.edit',compact('newsletter'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Newsletter  $newsletter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Newsletter $newsletter)
+    public function update(UpdateNewsletterRequest $request, Newsletter $newsletter): RedirectResponse
     {
-        //
+        $newsletter->update($request->validated());
+
+        return redirect()->route('newsletters.index')
+            ->with('success','Naujienlaiškis sėkmingai atnaujintas');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateNewsletterRequest  $request
-     * @param  \App\Models\Newsletter  $newsletter
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateNewsletterRequest $request, Newsletter $newsletter)
+    public function destroy(Newsletter $newsletter):RedirectResponse
     {
-        //
-    }
+        $newsletter->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Newsletter  $newsletter
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Newsletter $newsletter)
-    {
-        //
+        return redirect()->route('newsletters.index')
+            ->with('success','Naujienlaiškis sėkmingai ištrintas');
     }
 
     public function generatePDF(Newsletter $newsletter) {

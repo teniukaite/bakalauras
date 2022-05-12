@@ -83,7 +83,6 @@
 
                                                             <button type="submit" class="action_btn"> <i class="fas fa-trash"></i></button>
                                                         </form>
-                                                        <a href="{{route('newsletters.show', $newsletter->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
                                                         <a href="{{ route('newsletters.generatePDF', $newsletter->id) }}" class="action_btn"> <i class="fas fa-solid fa-file-pdf"></i> </a>
                                                         <a href="{{ route('newsletters.sendPDF', $newsletter->id) }}" class="action_btn"> <i class="fas fa-solid fa-paper-plane"></i> </a>
                                                     </div>

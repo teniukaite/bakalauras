@@ -1,9 +1,8 @@
 <footer>
     <div class="footer-content">
         <h3>Laisvai samdomų specialistų sistema</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at fermentum neque, nec euismod justo. Aenean cursus tellus in accumsan tincidunt.
-            Fusce lacus urna, lacinia vitae venenatis nec, tincidunt quis turpis. Quisque molestie tincidunt consectetur. Integer non lectus vitae nisi imperdiet finibus.
-            Sed gravida luctus porta. Etiam eget velit tellus. Vivamus posuere mollis congue. Nam sed accumsan nisi, et dignissim tortor.</p>
+        <p>Laisvai samdomų specialistų sistema
+            Tik pas mus galite rasti laisvai samdomų specialistų siūlomas paslaugas, o jei norite tapti specialistu, galite užsiregistruoti</p>
         <ul class="socials">
             <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
@@ -11,14 +10,6 @@
     </div>
     <div class="footer-bottom">
         <p>copyright &copy; <a href="#">LSSS</a>  </p>
-        <div class="footer-menu">
-            <ul class="f-menu">
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="">Blog</a></li>
-            </ul>
-        </div>
     </div>
 </footer>
 
