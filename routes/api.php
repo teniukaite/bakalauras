@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('/users', 'App\Http\Controllers\Api\ApiController@getUsersCountInCity');
+Route::get('/categories', 'App\Http\Controllers\Api\ApiController@getOrdersCountInEachCategory');
+
+Route::middleware('admin')->group(function () {
 });

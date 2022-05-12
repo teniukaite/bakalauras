@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -72,6 +72,16 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="birthday" class="col-md-4 col-form-label text-md-end">Data</label>
+
+                            <div class="col-md-6">
+                            <input type="date" class="form-control" id="birthday" name="birthday"
+                                   value="2022-02-22"
+                                   min="1900-01-01" max="2060-12-31">
                             </div>
                         </div>
 

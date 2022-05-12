@@ -6,6 +6,10 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -26,7 +30,10 @@ class User extends Authenticatable
         'photo',
         'points',
         'email',
-        'password',
+        'role',
+        'gender',
+        'birthday',
+        'password'
     ];
 
     /**
@@ -47,4 +54,107 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function submittedConflicts(): HasMany
+    {
+        return $this->hasMany(Conflict::class, 'plaintiff_id');
+    }
+
+    public function resolvedConflicts(): HasMany
+    {
+        return $this->hasMany(Conflict::class, 'moderator_id');
+    }
+
+    public function orderedOrders(): HasManyThrough
+    {
+        return $this->HasManyThrough(Order::class, User::class, 'id', 'client_id');
+    }
+
+    public function createdOrders(): HasManyThrough
+    {
+        return $this->HasManyThrough(Order::class, User::class, 'id', 'freelancer_id');
+    }
+
+    public function scopeRandomModerator($query, ?int $id = null)
+    {
+        if (!is_null($id)) {
+            return $query->where('role', '=', 2)->where('id', '!=', $id)->inRandomOrder();
+        }
+        return $query->where('role', '=', 2)->inRandomOrder();
+    }
+
+    public function scopeUserCount(): int
+    {
+        return User::where('role', '=', 0)->count();
+    }
+
+    public function scopeFreelancerCount(): int
+    {
+        return User::where('role', '=', 1)->count();
+    }
+
+    public function scopeModeratorCount(): int
+    {
+        return User::where('role', '=', 2)->count();
+    }
+
+    public function scopeAdminCount(): int
+    {
+        return User::where('role', '=', 3)->count();
+    }
+
+    public function scopeNewUsers(): int
+    {
+        return User::where('created_at', '>', now()->subDay())->count();
+    }
+
+    public function conflictHistory(): HasMany
+    {
+        return $this->hasMany(ConflictHistory::class, 'user_id');
+    }
+
+    public function fileComments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function tokens(): HasMany
+    {
+        return $this->hasMany(Token::class, 'user_id');
+    }
+
+    public function askedQuestions(): HasMany
+    {
+        return $this->hasMany(Request::class, 'askedBy_id');
+    }
+
+    public function answeredQuestions(): HasMany
+    {
+        return $this->hasMany(Request::class, 'answeredBy_id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'user_id');
+    }
+
+    public function cities(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'freelancer_id');
+    }
 }
