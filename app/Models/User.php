@@ -152,4 +152,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(City::class);
     }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'freelancer_id');
+    }
 }

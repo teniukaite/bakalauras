@@ -85,4 +85,5 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 #offers
 Route::get('/offers', [OffersController::class, 'list'])->name('offers.list');
 Route::resource('offers', OffersController::class)->only('show');
+Route::get('/freelancers/{freelancer:id}/offers', [FreelancerController::class, 'offers'])->name('freelancers.offers');
 Route::resource('freelancers', FreelancerController::class)->only('index');

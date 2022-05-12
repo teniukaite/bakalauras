@@ -9,8 +9,15 @@ class FreelancerController extends Controller
 {
     public function index(): View
     {
-        $freelancers = User::where('role', 1)->orderBy('points', 'desc')->paginate(10);
+        $freelancers = User::where('role', 1)->withCount('offers')->orderBy('points', 'desc')->paginate(10);
 
         return view('freelancer.top', compact('freelancers'));
+    }
+
+    public function offers(User $freelancer): View
+    {
+        $offers = $freelancer->offers()->with('freelancer')->paginate(10);
+
+        return view('freelancer.offers', compact('offers'));
     }
 }
