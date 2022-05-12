@@ -83,6 +83,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 });
 
 #offers
+Route::post('/offers/{offer:id}/review', [ReviewController::class, 'store'])->name('offers.review');
 Route::get('/offers', [OffersController::class, 'list'])->name('offers.list');
 Route::resource('offers', OffersController::class)->only('show');
 Route::get('/freelancers/{freelancer:id}/offers', [FreelancerController::class, 'offers'])->name('freelancers.offers');
