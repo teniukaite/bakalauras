@@ -84,6 +84,54 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <h3>Atsiliepimai</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>El. paštas</th>
+                                    <th>Atsiliepimas</th>
+                                    <th>Įvertinimas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $i = 0; @endphp
+                                @foreach($offer->reviews as $review)
+                                <tr>
+                                    <td>{{ $i+1 }}</td>
+                                    <th>{{ $review->author->email }}</th>
+                                    <th>{{ $review->text }}</th>
+                                    <th>{{ $review->rating }}</th>
+                                </tr>
+                                @php $i++; @endphp
+                                 @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @auth()
+                        <hr>
+                        <h3>Rašyti atsiliepimą</h3>
+                        <hr>
+                        <form action="{{ route('offers.review', $offer->id) }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="review">Atsiliepimas</label>
+                                <textarea id="review" class="form-control" name="text" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Įvertinimas</label>
+                                <input type="number" id="rating" class="form-control" name="rating" min="1" max="5">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Rašyti</button>
+                        </form>
+                    @endauth
+                </div>
+            </div>
         </div>
     </div>
 @endsection

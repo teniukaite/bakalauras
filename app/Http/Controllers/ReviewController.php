@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
+use App\Models\Offer;
 use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -31,15 +32,19 @@ class ReviewController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreReviewRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreReviewRequest $request)
+    public function store(StoreReviewRequest $request, Offer $offer)
     {
-        //
+        $user = auth()->user();
+        $text = $request->input('text');
+
+        $review = new Review();
+        $review->text = $text;
+        $review->user_id = $user->id;
+        $review->offer_id = $offer->id;
+        $review->rating = $request->input('rating');
+        $review->save();
+
+        return redirect()->route('offers.show', $offer->id);
     }
 
     public function show(Review $review): View
