@@ -22,11 +22,6 @@ class Offer extends Model
         return $this->belongsTo(User::class, 'freelancer_id', 'id');
     }
 
-    public function categories(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
-
     public function files(): HasMany
     {
         return $this->hasMany(File::class, 'offer_id');
@@ -37,9 +32,9 @@ class Offer extends Model
         return $query->where('freelancer_id', '=', Auth::user()->id);
     }
 
-    public function orders(): BelongsTo
+    public function orders()
     {
-        return $this->belongsTo(Order::class, 'service_id', 'id');
+        return $this->hasMany(Order::class, 'service_id');
     }
 
     public function cities(): BelongsTo
@@ -50,5 +45,10 @@ class Offer extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'offer_id');
+    }
+
+    public function categories(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     public function getOffers()
     {
-        $offers = Offer::latest()->with('cities', 'category')->paginate(5);
+        $offers = Offer::latest()->with('cities', 'categories')->paginate(5);
 
         return view('admin.offers.index', compact('offers'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

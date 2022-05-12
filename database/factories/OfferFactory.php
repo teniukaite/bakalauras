@@ -11,6 +11,15 @@ class OfferFactory extends Factory
 {
     public function definition(): array
     {
+        $services = [
+            'Plaukų dažymas',
+            'Plaukų kirpimas',
+            'Atsatomoji procedūra',
+            'Veido valymas',
+            'Masažas',
+            'Nagų priaugimas',
+            'Manikiūras'
+        ];
         return [
             'service_name' => $this->faker->sentence,
             'description' => $this->faker->sentence,

@@ -22,7 +22,7 @@ class OrderFactory extends Factory
             'client_id' => $this->faker->numberBetween(1, 100),
             'order_date' => $this->faker->dateTimeBetween('-1 years'),
             'freelancer_id' => $this->faker->numberBetween(1, 100),
-            'service_id' => $this->faker->numberBetween(1, 100),
+            'service_id' => $this->faker->numberBetween(1, 49),
         ];
     }
 }

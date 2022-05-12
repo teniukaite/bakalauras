@@ -68,7 +68,7 @@
                                                 <td>{{ $offer->service_name }}</td>
                                                 <td>{{ $offer->freelancer->name }} {{ $offer->freelancer->lastName }}</td>
                                                 <td>{{ $offer->cities->name }}</td>
-                                                <td>{{ $offer->category->name }}</td>
+                                                <td>{{ $offer->categories->name }}</td>
                                                 <td>
                                                     @if($offer->recommended == 0)
                                                     <form action="{{route('admin.recommend', $offer->id)}}" method="post">
