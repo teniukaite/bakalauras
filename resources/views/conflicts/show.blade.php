@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Skundas {{$conflict->id}}</h2>
+                <h2> Skundas nr. {{$conflict->id}}</h2>
             </div>
             <div class="pull-left">
                 <a class="btn btn-primary" href="{{ route('conflicts.index') }}"> Atgal </a>
