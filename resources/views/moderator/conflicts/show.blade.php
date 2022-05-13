@@ -261,8 +261,8 @@
             min-height: 100%;
         }
         .carousel-item img {
-            min-width: 50%;
-            min-height: 50%;
+            max-width: 50%;
+            max-height: 50%;
         }
     </style>
 @endsection
