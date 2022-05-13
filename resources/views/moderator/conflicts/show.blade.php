@@ -63,7 +63,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Skundą pateikį:</strong>
+                                                <strong>Skundą pateikė:</strong>
                                                 {{ $conflict->plaintiff->name }} {{$conflict->plaintiff->lastName}}
                                             </div>
                                         </div>
@@ -73,6 +73,14 @@
                                                 {{ \App\Http\Service\ConflictsService::getCause( $conflict->cause) }}
                                             </div>
                                         </div>
+                                        @if(!is_null($conflict->decision))
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <strong>Sprendimas:</strong>
+                                                {{ $conflict->decision }}
+                                            </div>
+                                        </div>
+                                        @endif
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Užsakymas:</strong>

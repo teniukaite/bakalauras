@@ -40,6 +40,14 @@
                 {{ $conflict->explanation }}
             </div>
         </div>
+        @if(!is_null($conflict->decision))
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Sprendimas:</strong>
+                    {{ $conflict->decision }}
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <strong>Failai</strong>
