@@ -32,6 +32,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('conflicts.index') }}">Konfliktai</a>
                     </li>
+                @if (auth()->user()->role > 1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">Administracija</a>
+                    </li>
+                @endif
                 @endauth
             </ul>
         </div>
