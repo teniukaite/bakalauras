@@ -23,7 +23,7 @@
         @foreach ($conflicts as $conflict)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $conflict->status }}</td>
+                <td> {{ \App\Http\Service\ConflictsService::getStatus( $conflict->status) }}</td>
                 <td>{{ $conflict->conflictOrders->service->service_name }}</td>
                 <td>{{substr($conflict->created_at, 0, 10)}}</td>
                 <td>

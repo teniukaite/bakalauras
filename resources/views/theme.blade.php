@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>LSSS Administracija</title>
     <link rel="icon" href="/img/minlogo.png" type="image/png">
-    <style>
-        *{ font-family: "Times New Roman", Times, serif !important;}
-    </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 
+    <style>
+        * {font-family: 'Roboto', sans-serif !important; }
+    </style>
 
 {{--    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>--}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">

@@ -1,4 +1,5 @@
 <nav class="sidebar dark_sidebar">
+    @php($loggedInUser = \Illuminate\Support\Facades\Auth::user())
     <div class="logo d-flex justify-content-between">
         <a class="large_logo" href="{{route('dashboard')}}"><img src="/img/logoadmin.png" alt=""></a>
         <a class="small_logo" href="{{route('dashboard')}}"><img src="/img/minlogo.png" alt=""></a>
@@ -7,6 +8,7 @@
         </div>
     </div>
     <ul id="sidebar_menu">
+        @if($loggedInUser->role == 3)
         <li class="">
             <a href="{{route('users.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
@@ -22,6 +24,7 @@
 {{--                <li><a href="index.html">Light Sidebar</a></li>--}}
 {{--            </ul>--}}
         </li>
+
         <li class="">
             <a href="{{route('categories.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
@@ -32,6 +35,7 @@
                 </div>
             </a>
         </li>
+    @endauth
         <li class="">
             <a href="{{route('newsletters.index')}}" aria-expanded="false">
                 <div class="nav_icon_small">
@@ -73,6 +77,7 @@
                 </div>
             </a>
         </li>
+            @if($loggedInUser->role == 3)
         <li class="">
             <a href="{{ route('admin.offers') }}" aria-expanded="false">
                 <div class="nav_icon_small">
@@ -83,6 +88,7 @@
                 </div>
             </a>
         </li>
+        @endif
         <li class="">
             <a href="{{route('dashboard')}}" aria-expanded="false">
                 <div class="nav_icon_small">
@@ -150,7 +156,7 @@
                                 <div class="profile_info_details">
                                     <a href="{{route('home')}}">Klientų sistema </a>
                                     <a href="{{route('users.myAccount')}}">Mano profilis</a>
-                                    <a href="#">Atsijungti </a>
+                                    <a href="/logout">Atsijungti </a>
                                 </div>
                             </div>
                         </div>

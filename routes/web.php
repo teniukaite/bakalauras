@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('orders', OrderController::class);
     #Requests
     Route::resource('/user_requests', UserRequestsController::class);
-    Route::get('/{file:id}/file', [FileController::class, 'generate'])->name('file.generate');
 });
 
 Auth::routes();
@@ -61,6 +60,7 @@ Route::middleware('freelancer')->prefix('freelancer')->group(function () {
 });
 
 Route::middleware('moderator')->prefix('moderator')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/conflicts', [ModeratorController::class, 'getConflicts'])->name('moderator.conflicts');
     Route::get('/conflict/{conflict:id}', [ModeratorController::class, 'showConflict'])->name('moderator.show.conflict');
     Route::get('/conflict/information/{conflict}', [ModeratorController::class, 'openInformationRequest'])->name('moderator.need.conflict.information');
@@ -76,7 +76,7 @@ Route::middleware('moderator')->prefix('moderator')->group(function () {
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/offers', [AdminController::class, 'getOffers'])->name('admin.offers');
     Route::post('/recommend/{offer}', [AdminController::class, 'recommendOffer'])->name('admin.recommend');
     Route::post('/unrecommend/{offer}', [AdminController::class, 'unrecommendOffer'])->name('admin.unrecommend');

@@ -17,6 +17,7 @@ class StoreDecisionRequest extends FormRequest
     {
         return [
             'decision' => 'required|string',
+            'cause' => 'required',
         ];
     }
 }

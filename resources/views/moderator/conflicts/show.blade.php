@@ -31,10 +31,13 @@
                                     <div class="row">
                                         <div class="col-lg-12 margin-tb">
                                             <div class="pull-right">
+                                                @if($conflict->status < 3)
                                                 <button type="button" class="btn_1" data-bs-toggle="modal" data-bs-target="#decision">Priimti sprendimą</button>
                                                 <a class="btn_1" href="{{ route('moderator.need.conflict.information', $conflict->id) }}"> Reikia papildomos informacijos </a>
+                                                @endif
                                                 <a class="addPadding" href="{{route('show.history', $conflict->id)}}"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +47,7 @@
                                             <div class="row mb-3">
                                                 <label for="cause" class="col-md-4 col-form-label text-md-end">{{ __('Statusas') }}</label>
                                                 <div class="col-md-6">
-                                                    <select name="cause" id="cause" class="form-control">
+                                                    <select disabled name="cause" id="cause" class="form-control">
                                                         <option @if ($conflict->status == 0) selected @endif value="0">Pateiktas </option>
                                                         <option @if ($conflict->status == 1) selected @endif value="1">Peržiūrėtas</option>
                                                         <option @if ($conflict->status == 2) selected @endif value="2">Laukiama informacijos</option>
@@ -60,19 +63,19 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Skunda pateike:</strong>
+                                                <strong>Skundą pateikį:</strong>
                                                 {{ $conflict->plaintiff->name }} {{$conflict->plaintiff->lastName}}
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Priezastis:</strong>
+                                                <strong>Priežastis:</strong>
                                                 {{ \App\Http\Service\ConflictsService::getCause( $conflict->cause) }}
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Uzsakymas:</strong>
+                                                <strong>Užsakymas:</strong>
                                                 {{ $conflict->conflictOrders->service->service_name }} ({{$conflict->conflictOrders->service->freelancer->email}})
                                             </div>
                                         </div>
@@ -84,6 +87,13 @@
                                         </div>
                                             <div class="col-md-12">
                                                 <strong>Failai</strong>
+                                                @foreach($conflict->files as $file)
+                                                    @if(substr($file->name, -3) == 'pdf')
+                                                        <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                                    @endif
+                                                    <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
+                                                @endforeach
+
                                                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                                     <div class="carousel-inner">
                                                         @foreach($conflict->files as $file)
@@ -135,6 +145,22 @@
 
                     <form action="{{ route('moderator.close.conflict', $conflict->id) }}" method="POST">
                         @csrf
+                        <h4>
+                            <div class="row mb-3">
+                                <label for="cause" class="col-md-4 col-form-label text-md-end">{{ __('Statusas') }}</label>
+                                <div class="col-md-6">
+                                    <select name="cause" id="cause" class="form-control">
+                                        <option @if ($conflict->status == 0) selected @endif value="0">Pateiktas </option>
+                                        <option @if ($conflict->status == 1) selected @endif value="1">Peržiūrėtas</option>
+                                        <option @if ($conflict->status == 2) selected @endif value="2">Laukiama informacijos</option>
+                                        <option @if ($conflict->status == 3) selected @endif value="3">Priimamas sprendimas</option>
+                                        <option @if ($conflict->status == 4) selected @endif value="4">Išspręstas</option>
+                                        <option @if ($conflict->status == 5) selected @endif value="5">Atšauktas</option>
+                                        <option @if ($conflict->status == 6) selected @endif value="6">Grąžintas</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </h4>
 
                         <div class="row mb-3">
                             <label for="decision" class="col-md-4 col-form-label text-md-end">{{ __('Sprendimas') }}</label>
@@ -180,6 +206,12 @@
                                         </div>
                                         <div class="col-md-12">
                                             <strong>Failai</strong>
+                                            @foreach($conflict->files as $file)
+                                                @if(substr($file->name, -3) == 'pdf')
+                                                    <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                                @endif
+                                                <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
+                                            @endforeach
                                             <div id="additionaFiles" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                                 <div class="carousel-inner">
                                                     @foreach($additionalInformation->files as $file)

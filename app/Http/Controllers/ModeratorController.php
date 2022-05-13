@@ -74,7 +74,7 @@ class ModeratorController extends Controller
             'conflict_id' => $conflict->id
         ]);
 
-        Mail::to($data['user'])->send(new InformationRequested('http://localhost/submit/' . $token->token . '/information'));
+        Mail::to($data['user'])->send(new InformationRequested('https://katen.lt/submit/' . $token->token . '/information'));
 
         $conflict->update([
             'status' => 2
@@ -100,7 +100,7 @@ class ModeratorController extends Controller
         ]);
 
         $conflict->update([
-            'status' => 4,
+            'status' => $data['cause'],
             'decision' => $data['decision'],
         ]);
 

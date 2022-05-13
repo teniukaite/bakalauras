@@ -75,7 +75,7 @@
     <script>
         ClassicEditor
             .create( document.querySelector( '#kt-ckeditor-1' ), {
-                placeholder: 'Jūsų Tekstas'
+                placeholder: 'Jūsų Tekstas',
             } )
             .then( editor => {
                 console.log( editor );
