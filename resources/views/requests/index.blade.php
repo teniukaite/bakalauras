@@ -74,9 +74,9 @@
                                                 <td>{{$request->created_at}}</td>
                                                 <td>
                                                     <div class="action_btns d-flex">
-                                                        <a href="{{ route('users.edit',$request->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>
+                                                        <a href="{{ route('requests.edit',$request->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>
                                                         </a>
-                                                        <form action="{{ route('users.destroy',$request->id) }}" method="POST">
+                                                        <form action="{{ route('requests.destroy',$request->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
 

@@ -81,7 +81,10 @@ class RequestController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
+        $request->delete();
+
+        return redirect()->route('requests.index')
+            ->with('success','Užklausa ištrinta sėkmingai');
     }
 
     public function answer(Request $request, RequestAnswerStoreRequest $answerStoreRequest): RedirectResponse
