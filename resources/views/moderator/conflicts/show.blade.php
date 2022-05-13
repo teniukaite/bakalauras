@@ -90,8 +90,8 @@
                                                 @foreach($conflict->files as $file)
                                                     @if(substr($file->name, -3) == 'pdf')
                                                         <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                                        <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
                                                     @endif
-                                                    <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
                                                 @endforeach
 
                                                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -209,8 +209,9 @@
                                             @foreach($conflict->files as $file)
                                                 @if(substr($file->name, -3) == 'pdf')
                                                     <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                                    <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
                                                 @endif
-                                                <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
+
                                             @endforeach
                                             <div id="additionaFiles" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                                 <div class="carousel-inner">

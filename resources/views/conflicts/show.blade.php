@@ -49,8 +49,9 @@
                             @foreach($conflict->files as $file)
                                 @if(substr($file->name, -3) == 'pdf')
                                     <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
-                                @endif
                                     <a class="btn btn-info" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
+                                @endif
+
                             @endforeach
                             <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                                 <div class="carousel-inner">
