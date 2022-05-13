@@ -66,6 +66,8 @@ class NewsletterController extends Controller
     }
 
     public function generatePDF(Newsletter $newsletter) {
+        //$newsletter->content = utf8_decode($newsletter->content);
+        $newsletter->content = mb_convert_encoding($newsletter->content, 'HTML-ENTITIES', 'UTF-8');
         $pdf = PDF::loadHTML($newsletter->content);
 
         return $pdf->save(public_path().'/uploads/pdf/'.$newsletter->name . '.pdf')->stream($newsletter->name . '.pdf');

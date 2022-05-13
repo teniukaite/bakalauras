@@ -29,6 +29,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user_requests.index') }}">Mano užklausos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('conflicts.index') }}">Konfliktai</a>
+                    </li>
                 @endauth
             </ul>
         </div>

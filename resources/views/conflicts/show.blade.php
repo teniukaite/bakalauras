@@ -24,19 +24,19 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Priezastis:</strong>
+                <strong>Priežastis:</strong>
                 {{ \App\Http\Service\ConflictsService::getCause( $conflict->cause) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Uzsakymas:</strong>
+                <strong>Užsakymas:</strong>
                 {{ $conflict->conflictOrders->service->service_name }} ({{$conflict->conflictOrders->service->freelancer->email}})
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Paaiskinimas:</strong>
+                <strong>Paaiškinimas:</strong>
                 {{ $conflict->explanation }}
             </div>
         </div>
@@ -46,14 +46,23 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="form-group">
+                            @foreach($conflict->files as $file)
+                                @if(substr($file->name, -3) == 'pdf')
+                                    <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                @endif
+                                    <a class="btn btn-info" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
+                            @endforeach
                             <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     @foreach($conflict->files as $file)
+                                        @if(substr($file->name, -3) !== 'pdf')
+
                                         <div class="carousel-item">
                                           <a href="{{route('comments.show', $file->id)}}">
                                               <img  src="{{ asset($file->file_path) }}" class="d-block w-100" alt="file">
                                           </a>
                                         </div>
+                                        @endif
                                     @endforeach
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

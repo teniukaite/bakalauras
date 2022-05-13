@@ -15,29 +15,19 @@
     <table class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>Identificinis nr.</th>
             <th>Statusas</th>
-            <th>Sukurimo data</th>
+            <th scope="col">Užsakymas</th>
+            <th>Sukūrimo data</th>
             <th width="280px"></th>
         </tr>
         @foreach ($conflicts as $conflict)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $conflict->identification }}</td>
                 <td>{{ $conflict->status }}</td>
-                <td>{{ $conflict->created_at }}</td>
+                <td>{{ $conflict->conflictOrders->service->service_name }}</td>
+                <td>{{substr($conflict->created_at, 0, 10)}}</td>
                 <td>
-{{--                    <form action="{{ route('conflicts.destroy',$conflict->id) }}" method="POST">--}}
-
-                        <a class="btn btn-info" href="{{ route('conflicts.show',$conflict->id) }}">Peržiūrėti</a>
-
-{{--                        <a class="btn btn-primary" href="{{ route('conflicts.edit',$conflict->id) }}">Redaguoti</a>--}}
-
-{{--                        @csrf--}}
-{{--                        @method('DELETE')--}}
-
-{{--                        <button type="submit" class="btn btn-danger">Ištrinti</button>--}}
-{{--                    </form>--}}
+                    <a class="btn btn-outline-info" href="{{ route('conflicts.show',$conflict->id) }}">Peržiūrėti</a>
                 </td>
             </tr>
         @endforeach

@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConflictController;
 use App\Http\Controllers\ConflictHistoryController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FreelancerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('orders', OrderController::class);
     #Requests
     Route::resource('/user_requests', UserRequestsController::class);
+    Route::get('/{file:id}/file', [FileController::class, 'generate'])->name('file.generate');
 });
 
 Auth::routes();

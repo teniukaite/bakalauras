@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFileRequest;
@@ -8,6 +10,12 @@ use App\Models\File;
 
 class FileController extends Controller
 {
+    public function generate(File $file)
+    {
+        dd($file);
+        return response()->download($file->path);
+    }
+
     /**
      * Display a listing of the resource.
      *
