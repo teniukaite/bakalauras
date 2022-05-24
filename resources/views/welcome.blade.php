@@ -150,7 +150,6 @@
                     <li><i class="fa-solid fa-map-location-dot"></i> {{ $offer->cities->name }}</li>
                     <li><i class="fa-solid fa-clock"></i> {{ $offer->duration }}</li>
                     <li><i class="fa-solid fa-user"></i> {{$offer->freelancer->name}} {{$offer->freelancer->lastName}}</li>
-                    <li>Limited Support</li>
                 </ul>
                 <a href="{{route('offers.show', $offer->id)}}" class="btn my-4 font-weight-bold atlas-cta cta-ghost">Peržiūrėti</a>
             </div>
