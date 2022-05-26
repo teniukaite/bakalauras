@@ -85,6 +85,11 @@ class User extends Authenticatable
         return $this->HasManyThrough(Order::class, User::class, 'id', 'freelancer_id');
     }
 
+    public function receivedConflicts(): HasManyThrough
+    {
+        return $this->HasManyThrough(Conflict::class, Order::class, 'id', 'order_id');
+    }
+
     public function scopeRandomModerator($query, ?int $id = null)
     {
         if (!is_null($id)) {

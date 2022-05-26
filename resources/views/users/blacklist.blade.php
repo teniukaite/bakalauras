@@ -37,14 +37,7 @@
                         <div class="white_card_body">
                             <div class="QA_section">
                                 <div class="white_box_tittle list_header">
-                                    <h4>Naudotojų sąrašas </h4>
-                                    <div class="row">
-                                        <div class="col-lg-12 margin-tb">
-                                            <div class="pull-right">
-                                                <a class="btn_1" href="{{ route('users.blacklist') }}"> Juodasis sąrašas</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h4>Juodasis sąrašas </h4>
                                     <div class="box_right d-flex lms_block">
                                         <div class="serach_field_2">
                                             <div class="search_inner">
@@ -69,33 +62,35 @@
                                             <th scope="col">El. paštas</th>
                                             <th scope="col">Rolė</th>
                                             <th scope="col">Taškai</th>
+                                            <th scope="col">Konfliktų skaičius</th>
                                             <th scope="col">Veiksmai</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
-                                        <tr>
-                                            <th scope="row"><a href="#" class="question_content"> {{ ++$i }} </a></th>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->lastName }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td><a href="#">{{\App\Http\Service\UserService::getRole($user->role)}}</a></td>
-                                            <td>{{$user->points}}</td>
-                                            <td>
-                                                <div class="action_btns d-flex">
-{{--                                                    <a href="{{ route('users.edit',$user->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>--}}
-{{--                                                    </a>--}}
-                                                    <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <th scope="row"><a href="#" class="question_content"> {{ ++$i }} </a></th>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->lastName }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td><a href="#">{{\App\Http\Service\UserService::getRole($user->role)}}</a></td>
+                                                <td>{{$user->points}}</td>
+                                                <td>{{$user->received_conflicts_count}}</td>
+                                                <td>
+                                                    <div class="action_btns d-flex">
+                                                        {{--                                                    <a href="{{ route('users.edit',$user->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>--}}
+                                                        {{--                                                    </a>--}}
+                                                        <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <button type="submit" class="action_btn"> <i class="fas fa-trash"></i></button>
-                                                    </form>
-                                                    <a href="{{route('users.show', $user->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                            @endforeach
+                                                            <button type="submit" class="action_btn"> <i class="fas fa-trash"></i></button>
+                                                        </form>
+                                                        <a href="{{route('users.show', $user->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                     {!! $users->links() !!}

@@ -74,6 +74,7 @@ Route::middleware('moderator')->prefix('moderator')->group(function () {
 });
 
 Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/users/blacklist', [UserController::class, 'blacklist'])->name('users.blacklist');
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
 
