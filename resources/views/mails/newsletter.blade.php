@@ -1,3 +1,3 @@
 Sveiki,
 
-Jūs gavėte naują naujienlaiški.
+Jūs gavote naują naujienlaiškį.

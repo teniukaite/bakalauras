@@ -74,8 +74,11 @@ Route::middleware('moderator')->prefix('moderator')->group(function () {
 });
 
 Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/users/{user}/deleted', [UserController::class, 'showDeleted'])->name('users.showDeleted');
     Route::get('/users/checkPoints', [UserController::class, 'countPoints'])->name('users.countPoints');
     Route::get('/users/blacklist', [UserController::class, 'blacklist'])->name('users.blacklist');
+    Route::get('/users/deleted', [UserController::class, 'getDeleted'])->name('users.deleted');
+
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
 

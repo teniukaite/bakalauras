@@ -41,12 +41,17 @@
                                     <div class="row">
                                         <div class="col-lg-6 margin-tb">
                                             <div class="pull-right">
-                                                <a class="btn_1" href="{{ route('users.blacklist') }}"> Juodasis sąrašas</a>
+                                                <a class="btn_6" href="{{ route('users.blacklist') }}"> Juodasis sąrašas</a>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 margin-tb">
                                             <div class="pull-right">
-                                                <a class="btn_1" href="{{ route('users.countPoints') }}"> Perskaičiuoti taškus</a>
+                                                <a class="btn_6" href="{{ route('users.countPoints') }}"> Perskaičiuoti taškus</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 margin-tb">
+                                            <div class="pull-right">
+                                                <a class="btn_6" href="{{ route('users.deleted') }}"> Archyvas</a>
                                             </div>
                                         </div>
                                     </div>

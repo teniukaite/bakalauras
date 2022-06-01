@@ -72,6 +72,11 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -82,6 +87,44 @@
                             <input type="date" class="form-control" id="birthday" name="birthday"
                                    value="2022-02-22"
                                    min="1900-01-01" max="2060-12-31">
+                                @error('birthday')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="city" class="col-md-4 col-form-label text-md-end">Miestas</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="city" name="city">
+                                    <option value="0">Pasirinkite miestą</option>
+                                    @foreach(\App\Models\City::all() as $city)
+                                        <option value="{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
+                                </select>
+                                @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="gender" class="col-md-4 col-form-label text-md-end">Lytis</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="gender" name="gender">
+                                    <option value="0">Nenurodyti</option>
+                                    <option value="1">Moteris</option>
+                                    <option value="2">Vyras</option>
+                                </select>
+                                @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

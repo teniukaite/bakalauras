@@ -147,4 +147,17 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success','Taškai suskaičiuoti ir priskirti sėkmingai');
     }
+
+    public function getDeleted(): View
+    {
+        $users = User::onlyTrashed()->paginate(10);
+
+        return view('users.deleted',compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
+    }
+
+    public function showDeleted(User $user): View
+    {
+        return view('users.showDeleted',compact('user'));
+    }
 }
