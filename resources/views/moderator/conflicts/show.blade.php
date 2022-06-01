@@ -216,7 +216,8 @@
                                             <strong>Failai</strong>
                                             @foreach($conflict->files as $file)
                                                 @if(substr($file->name, -3) == 'pdf')
-                                                    <a href="{{ env('APP_URL').'/'.$file->file_path}}">{{$file->name}}</a>
+                                                    <a href="{{ env('APP_URL').'/'.$file->file_path}}">
+                                                        <i class="fa-solid fa-file-pdf"></i>{{$file->name}}</a>
                                                     <a class="btn btn-primary" href="{{ route('comments.show', $file->id) }}">Peržiūrėti komentarus</a>
                                                 @endif
 
@@ -224,11 +225,13 @@
                                             <div id="additionaFiles" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                                 <div class="carousel-inner">
                                                     @foreach($additionalInformation->files as $file)
+                                                        @if(substr($file->name, -3) != 'pdf')
                                                         <div class="carousel-item" id="ff">
                                                             <a href="{{ route('comments.show', $file->id) }}" >
                                                                 <img  src="{{ asset($file->file_path) }}" class="d-block w-100" alt="file">
                                                             </a>
                                                         </div>
+                                                        @endif
                                                     @endforeach
                                                 </div>
                                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

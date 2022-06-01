@@ -46,10 +46,10 @@ Route::get('/logout', function() {
 
 Route::middleware('checkUser')->group(function () {
     Route::get('/history/{conflict}', [ConflictHistoryController::class, 'show'])->name('show.history');
-    Route::resource('comments', CommentController::class)->except(['create', 'show']);
-    Route::resource('conflicts', ConflictController::class);
     Route::get('comments/create/{file:id}', [CommentController::class, 'create'])->name('comments.create');
     Route::get('comments/{file:id}', [CommentController::class, 'show'])->name('comments.show');
+    Route::resource('comments', CommentController::class)->except(['create', 'show']);
+    Route::resource('conflicts', ConflictController::class);
     Route::get('/submit/{token}/information', [ConflictController::class, 'getInformationForm'])->name('conflict.get.information.form');
     Route::post('/submit/{conflict}/information', [AdditionalInformationController::class, 'store'])->name('conflict.post.information.form');
     Route::get('/my-profile', [UserController::class, 'myAccount'])->name('users.myAccount');
