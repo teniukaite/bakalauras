@@ -90,12 +90,8 @@
                                                 <div class="action_btns d-flex">
 {{--                                                    <a href="{{ route('users.edit',$user->id) }}" class="action_btn mr_10"> <i class="far fa-edit"></i>--}}
 {{--                                                    </a>--}}
-                                                    <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <button type="button" onclick="showDeleteModal({{ $user->id }})" class="action_btn"> <i class="fas fa-trash"></i></button>
 
-                                                        <button type="submit" class="action_btn"> <i class="fas fa-trash"></i></button>
-                                                    </form>
                                                     <a href="{{route('users.show', $user->id)}}" class="action_btn"> <i class="fas fa-solid fa-eye"></i> </a>
                                                 </div>
                                             </td>
@@ -112,10 +108,39 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deletion" tabindex="-1" aria-labelledby="deletion" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletion">Profilio šalinimas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Ar tikrai norite ištrinti naudotojo profilį?</h4>
+                    <form method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button onclick="deleteUser();" type="submit" class="btn_2"><i class="fa-solid fa-trash-can addSpace"></i> Taip</button>
+                        <button type="button" class="btn_6" data-bs-dismiss="modal" aria-label="Close">Ne</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
     <script>
         let search = document.getElementById('search');
+
+        function showDeleteModal(id) {
+            $('#deletion').modal('show');
+            $('#deletion').on('shown.bs.modal', function () {
+                $('#deletion').find('form').attr('action', '/admin/users/' + id);
+            });
+        }
     </script>
 @endsection

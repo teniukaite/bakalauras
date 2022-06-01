@@ -37,4 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectTo()
+    {
+        if (auth()->user()->role > 1) {
+            return '/moderator/dashboard';
+        }
+        return '/offers';
+    }
 }

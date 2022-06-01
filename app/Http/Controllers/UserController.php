@@ -46,7 +46,7 @@ class UserController extends Controller
         User::create($data);
 
         return redirect()->route('users.index')
-            ->with('success','User created successfully.');
+            ->with('success','Naudotojas sukurtas sėkmingai');
     }
 
     public function show(User $user): View
@@ -64,7 +64,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+            ->with('success','Naudotojas redaguotas sėkmingai.');
     }
 
     public function destroy(User $user): RedirectResponse
@@ -72,7 +72,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success','User deleted successfully');
+            ->with('success','Naudotojas ištrintas sėkmingai');
     }
 
     public function myAccount(): View

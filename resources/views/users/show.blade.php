@@ -34,13 +34,7 @@
                                             <div class="pull-right">
                                                 <button type="button" class="btn_6" data-bs-toggle="modal" data-bs-target="#addPoints"><i class="fa-solid fa-star addSpace"></i>Skirti taškus</button>
                                                 <button type="button" class="btn_2" data-bs-toggle="modal" data-bs-target="#removePoints"><i class="fa-solid fa-x addSpace"></i> Skirti nuobaudą</button>
-                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <button type="submit" class="btn_2"><i class="fa-solid fa-trash-can addSpace"></i> Ištrinti profilį</button>
-
-                                                </form>
+                                                <button type="button" class="btn_2" data-bs-toggle="modal" data-bs-target="#deletion"><i class="fa-solid fa-trash-can addSpace"></i> Ištrinti profilį</button>
                                             </div>
                                         </div>
                                     </div>
@@ -167,6 +161,28 @@
                         </div>
 
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deletion" tabindex="-1" aria-labelledby="deletion" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletion">Profilio šalinimas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Ar tikrai norite ištrinti naudotojo profilį?</h4>
+                    <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn_2"><i class="fa-solid fa-trash-can addSpace"></i> Taip</button>
+                        <button type="button" class="btn_6" data-bs-dismiss="modal" aria-label="Close">Ne</button>
+
+                    </form>
+
                 </div>
             </div>
         </div>
