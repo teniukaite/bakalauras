@@ -39,9 +39,14 @@
                                 <div class="white_box_tittle list_header">
                                     <h4>Naudotojų sąrašas </h4>
                                     <div class="row">
-                                        <div class="col-lg-12 margin-tb">
+                                        <div class="col-lg-6 margin-tb">
                                             <div class="pull-right">
                                                 <a class="btn_1" href="{{ route('users.blacklist') }}"> Juodasis sąrašas</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 margin-tb">
+                                            <div class="pull-right">
+                                                <a class="btn_1" href="{{ route('users.countPoints') }}"> Perskaičiuoti taškus</a>
                                             </div>
                                         </div>
                                     </div>

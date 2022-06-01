@@ -108,4 +108,43 @@ class UserController extends Controller
         return view('users.blacklist',compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
+
+    public function countPoints(): RedirectResponse
+    {
+        $points = 0;
+        $freelancers = User::where('role', 1)->get();
+
+        foreach ($freelancers as $freelancer) {
+            $offers = $freelancer->offers;
+            foreach ($offers as $offer) {
+                $reviews = $offer->reviews;
+                foreach ($reviews as $review) {
+                    if ($review->created_at->diffInDays(now()) <= 7) {
+                        $points += $review->points;
+                        switch ($review->rating) {
+                            case 2:
+                            case 3:
+                            case 1:
+                                $points += 0;
+                                break;
+                            case 4:
+                                $points += 1;
+                                break;
+                            case 5:
+                                $points += 2;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            $freelancer->points += $points;
+            $freelancer->save();
+
+            $points = 0;
+        }
+
+        return redirect()->route('users.index')
+            ->with('success','Taškai suskaičiuoti ir priskirti sėkmingai');
+    }
 }

@@ -21,7 +21,7 @@ class CheckPoints extends Command
     public function handle()
     {
         $points = 0;
-        $freelancers = User::where('role', 2)->get();
+        $freelancers = User::where('role', 1)->get();
 
         foreach ($freelancers as $freelancer) {
             $offers = $freelancer->offers;

@@ -33,6 +33,9 @@
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/colors/default.css')}}" id="colorSkinCSS">
+    <link rel="stylesheet" href="{{asset('vendors/datatable/css/jquery.dataTables.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('vendors/datatable/css/responsive.dataTables.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('vendors/datatable/css/buttons.dataTables.min.css')}}" />
 
     @yield('style')
 </head>
@@ -70,6 +73,15 @@
 
 <script src="{{asset('js/custom.js')}}"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+<script src="{{asset('vendors/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/buttons.flash.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/jszip.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/pdfmake.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/vfs_fonts.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('vendors/datatable/js/buttons.print.min.js')}}"></script>
 @yield('js')
 </body>
 
