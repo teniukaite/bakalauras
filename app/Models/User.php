@@ -34,7 +34,8 @@ class User extends Authenticatable
         'role',
         'gender',
         'birthday',
-        'password'
+        'password',
+        'phone_number'
     ];
 
     /**
@@ -156,7 +157,7 @@ class User extends Authenticatable
 
     public function cities(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function offers(): HasMany

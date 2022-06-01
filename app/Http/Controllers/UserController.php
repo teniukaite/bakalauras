@@ -77,7 +77,8 @@ class UserController extends Controller
 
     public function myAccount(): View
     {
-        $user = Auth::user();
+        $user = auth()->user()->load(['cities']);
+
         return view('users.myAccount', compact('user'));
     }
 

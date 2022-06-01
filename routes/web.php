@@ -53,6 +53,8 @@ Route::middleware('checkUser')->group(function () {
     Route::get('/submit/{token}/information', [ConflictController::class, 'getInformationForm'])->name('conflict.get.information.form');
     Route::post('/submit/{conflict}/information', [AdditionalInformationController::class, 'store'])->name('conflict.post.information.form');
     Route::get('/my-profile', [UserController::class, 'myAccount'])->name('users.myAccount');
+    Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('update-password');
+    Route::post('/update-my-account', [App\Http\Controllers\HomeController::class, 'updateMyAccount'])->name('update-my-account');
 });
 
 Route::middleware('freelancer')->prefix('freelancer')->group(function () {

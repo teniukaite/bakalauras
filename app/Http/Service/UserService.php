@@ -48,8 +48,9 @@ class UserService
     public static function getUserGender(int $genderID): string
     {
         return match ($genderID) {
-            0 => 'Vyras',
+            0 => 'Nenurodyta',
             1 => 'Moteris',
+            2 => 'Vyras',
         };
     }
 }
