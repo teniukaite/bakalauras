@@ -40,11 +40,17 @@
                                                         <div class="col-lg-6">
                                                             <div class="common_input mb_15">
                                                                 <input type="text" placeholder="Pavadinimas" name="name" value="{{$newsletter->name}}">
+                                                                @error('name')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <textarea name="content" id="kt-ckeditor-1">{{$newsletter->content}}</textarea>
+                                                @error('content')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-12">
                                                 <div class="create_report_btn mt_30">

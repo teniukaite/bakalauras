@@ -24,8 +24,18 @@ class StoreNewsletterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:50',
             'content' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Pavadinimas yra privalomas',
+            'name.string' => 'Pavadinimas turi būti tekstas',
+            'name.max' => 'Pavadinimas negali būti ilgesnis nei 50 simbolių',
+            'content.required' => 'Turinys yra privalomas',
         ];
     }
 }

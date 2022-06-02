@@ -23,11 +23,29 @@
                         <h4 class="text-right">Mano profilis</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Vardas</label><input type="text" name="name" class="form-control" placeholder="first name" value="{{$user->name}}"></div>
-                        <div class="col-md-6"><label class="labels">Pavardė</label><input type="text" name="lastName" class="form-control" value="{{$user->lastName}}" placeholder="surname"></div>
+                        <div class="col-md-6">
+                            <label class="labels">Vardas</label>
+                            <input type="text" name="name" class="form-control" placeholder="Vardas" value="{{$user->name}}">
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Pavardė</label>
+                            <input type="text" name="lastName" class="form-control" value="{{$user->lastName}}" placeholder="Pavardė">
+                            @error('lastName')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Telefono numeris</label><input type="text" name="phone_number" class="form-control" placeholder="Jūsų telefono numeris" value="{{$user->phone_number ?? ''}}"></div>
+                        <div class="col-md-12">
+                            <label class="labels">Telefono numeris</label>
+                            <input type="text" name="phone_number" class="form-control" placeholder="Jūsų telefono numeris" value="{{$user->phone_number ?? ''}}">
+                            @error('phone_number')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="col-md-12"><label class="labels">El. paštas</label><input type="text" name="email" class="form-control" placeholder="Jūsų telefono numeris" value="{{$user->email}}"></div>
                         <div class="col-md-12"><label class="labels">Taškai</label><input disabled type="text" class="form-control" placeholder="enter address line 1" value="{{$user->points}}"></div>
                         <div class="col-md-12"><label class="labels">Lytis</label> <select class="form-control" id="gender" name="gender">

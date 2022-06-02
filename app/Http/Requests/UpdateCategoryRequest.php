@@ -16,7 +16,16 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Pavadinimas yra privalomas',
+            'name.string' => 'Pavadinimas turi būti tekstas',
+            'name.max' => 'Pavadinimas negali būti ilgesnis nei 30 simbolių',
         ];
     }
 }

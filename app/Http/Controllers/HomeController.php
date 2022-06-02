@@ -48,9 +48,9 @@ class HomeController extends Controller
     public function updateMyAccount(UpdateUserRequest $request): \Illuminate\Http\RedirectResponse
     {
 //        dd('test');
-//       // $data = $request->validated();
+        $data = $request->validated();
 //        dd($request->all());
-        $data = $request->all();
+        //$data = $request->all();
         $user = User::find(auth()->user()->id);
         $user->subscribed = 0;
         $user->save();
